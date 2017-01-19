@@ -1,0 +1,162 @@
+/************
+ * 页面样式
+ ************/
+
+/* ==========
+   基本默认值
+   ========== */
+
+html {
+    font-size: 62.5%;
+    color: #222;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+/* ==========
+   工具样式
+   ========== */
+
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ===============
+   自定义页面样式
+   =============== */
+
+.left{
+	width: 20%;
+}
+
+.leftUp{
+	
+}
+.real_wathch{
+	position: relative;
+}
+
+.real_wathch img{
+	width: 100%;
+}
+
+.real_wathch #watchCanvas{
+	position: absolute;
+	width: 45%;
+	top: 32.5%; 
+	left: 28%; 	
+
+}
+
+.middle{
+	width: 40%;
+}
+
+.watchpainter{
+	
+}
+.painterCanvas{	
+
+}
+
+
+.right{
+	width: 40%;
+}
+
+
+/* ===============
+   	  时钟样式
+   =============== */
+.clock{
+	 background-color:#202020;
+	 font:bold 1rem Arial, Helvetica, sans-serif;
+	 margin:0;
+	 padding:0;	 	 
+	 width:100%; 
+	 color:#FFF;
+}
+
+
+#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:2rem; text-align:center; text-shadow:0 0 5px #00c6ff; }
+
+.clock ul { width:100%; margin:0 auto; padding:0px; list-style:none; text-align:center; }
+.clock ul li { display:inline; font-size:5rem; text-align:center; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 5px #00c6ff; }
+
+#point { position:relative; -moz-animation:mymove 1s ease infinite; -webkit-animation:mymove 1s ease infinite; padding-left:10px; padding-right:10px; }
+
+@-webkit-keyframes mymove 
+{
+0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+50% {opacity:0; text-shadow:none; }
+100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }	
+}
+
+
+@-moz-keyframes mymove 
+{
+0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+50% {opacity:0; text-shadow:none; }
+100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }	
+}
+
+

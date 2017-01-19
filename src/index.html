@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MaibuFactory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/normalize.css">
+	    
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script type="text/javascript" src="js/local_time_clock.js"></script>
+
+
+	
+
+</head>
+<body>
+
+<div class="left  pull-left">
+	<div class="leftUp">
+		<div class="clock">
+			<div id="Date"></div>
+			<ul>
+				<li id="hours"> </li>
+				<li id="point">:</li>
+				<li id="min"> </li>
+				<li id="point">:</li>
+				<li id="sec"> </li>
+			</ul>
+		</div>
+	</div>
+	<div class="real_wathch leftDown">
+		<img src="img/real_watch.png" alt="MaibuWatch" width="100%">
+		<canvas id="watchCanvas" width="128" height="128" ></canvas>
+	</div>
+</div>
+<div class="middle  pull-left">
+	<div class="watchpainter center">
+		<canvas id="painterCanvas" width="128" height="128" style="background-color: #ffff00;width:100%;height:100%;"></canvas>
+	</div>
+</div>
+<div class="right  pull-left">
+	<div class="storehouse rightUp">storehouse</div>
+	<div class="OS_res rightdown">OS_res</div>
+</div>
+
+	<script type="text/javascript">
+		'use strict';
+
+		var
+		watch_canvas = document.getElementById('watchCanvas'),
+		ctx = watch_canvas.getContext('2d');
+		ctx.clearRect(0, 0, 200, 200); // 擦除(0,0)位置大小为200x200的矩形，擦除的意思是把该区域变为透明
+		ctx.fillStyle = '#dddddd'; // 设置颜色
+		ctx.fillRect(0, 0, 130, 130); // 把(10,10)位置大小为130x130的矩形涂色
+		// 利用Path绘制复杂路径:
+		var path=new Path2D();
+		path.arc(75, 75, 50, 0, Math.PI*2, true);
+		path.moveTo(110,75);
+		path.arc(75, 75, 35, 0, Math.PI, false);
+		path.moveTo(65, 65);
+		path.arc(60, 65, 5, 0, Math.PI*2, true);
+		path.moveTo(95, 65);
+		path.arc(90, 65, 5, 0, Math.PI*2, true);
+		ctx.strokeStyle = '#000';
+		ctx.stroke(path);	
+
+		var painter_canvas = document.getElementById('painterCanvas');
+		
+		var context = painter_canvas.getContext("2d");
+
+		context.clearRect(0, 0, painter_canvas.width, painter_canvas.height);
+		context.shadowOffsetX = 2;
+		context.shadowOffsetY = 2;
+		context.shadowBlur = 2;
+		context.shadowColor = '#666666';
+		context.font = '14px Arial';
+		context.fillStyle = '#000';
+		context.fillText('MaibuFactory', 20, 40);
+
+	</script>
+	
+
+</body>
+</html>
