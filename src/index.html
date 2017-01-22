@@ -8,10 +8,8 @@
     <link rel="stylesheet" href="css/normalize.css">
 	    
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-	<script type="text/javascript" src="js/local_time_clock.js"></script>
-
-
-	
+<!-- 	<script type="text/javascript" src="js/local_time_clock.js"></script>
+ -->
 
 </head>
 <body>
@@ -30,7 +28,7 @@
 		</div>
 	</div>
 	<div class="real_wathch leftDown">
-		<img src="img/real_watch.png" alt="MaibuWatch" width="100%">
+		<img src="img/real_watch.png" alt="MaibuWatch" width="100%"/>
 		<canvas id="watchCanvas" width="128" height="128" ></canvas>
 	</div>
 </div>
@@ -40,9 +38,68 @@
 	</div>
 </div>
 <div class="right  pull-left">
-	<div class="storehouse rightUp">storehouse</div>
+	<div class="storehouse rightUp">		
+		<div id="previewContainer"></div>
+		<div class="up_img_btn_box">
+			<input type="file" id="upload_img_btn" multiple="multiple"/>
+			<button id="upload_img_btn_face" onclick="up_img_btn_face()"><img src="img/img_plus.gif"/></button>
+		</div>
+	</div>
 	<div class="OS_res rightdown">OS_res</div>
 </div>
+	
+
+	<script type="text/javascript">
+	'use strict'
+	
+	//修改图片上传按键
+	function up_img_btn_face () {
+		document.getElementById('upload_img_btn').click();
+	};
+
+	window.onload=function(){		
+
+		//图片上传预览订阅事件
+		var fileInput = document.getElementById('upload_img_btn');		
+		var previewContainer = document.getElementById('previewContainer');
+
+		fileInput.addEventListener('change',function(){
+			console.log('change...');
+
+			if (!fileInput.value){
+				info.innerHTML = '没有选择文件';
+				return ;
+			}	
+
+
+			for(var file of fileInput.files){					
+				
+				//var file = fileInput.files[i];			
+
+				//info.innerHTML = file.name;
+				if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif'){
+					alert('不是有效的图片文件!');
+					return;
+				}
+
+				var reader = new FileReader();
+				reader.onload=function(e){
+					console.log('reader.onload');
+					var data = e.target.result;
+
+					var imgInput=document.createElement("img");//创建input
+					imgInput.setAttribute("class","previewTray");//设置class属性
+					
+					//imgInput.style.backgroundImage='url('+ data +')';//设置背景图
+					imgInput.src=data;
+					previewContainer.appendChild(imgInput);//插入到previewContainer内					
+				};
+
+				reader.readAsDataURL(file);
+			}
+		});
+	};
+	</script>
 
 	<script type="text/javascript">
 		'use strict';

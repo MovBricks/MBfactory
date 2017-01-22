@@ -80,6 +80,43 @@ li {
     clear: both;
 }
 
+
+/* ===============
+      时钟样式
+   =============== */
+.clock{
+   background-color:#202020;
+   font:bold 1rem Arial, Helvetica, sans-serif;
+   margin:0;
+   padding:0;    
+   width:100%; 
+   color:#FFF;
+}
+
+
+#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:2rem; text-align:center; text-shadow:0 0 5px #00c6ff; }
+
+.clock ul { width:100%; margin:0 auto; padding:0px; list-style:none; text-align:center; }
+.clock ul li { display:inline; font-size:5rem; text-align:center; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 5px #00c6ff; }
+
+#point { position:relative; -moz-animation:mymove 1s ease infinite; -webkit-animation:mymove 1s ease infinite; padding-left:10px; padding-right:10px; }
+
+@-webkit-keyframes mymove 
+{
+0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+50% {opacity:0; text-shadow:none; }
+100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }  
+}
+
+
+@-moz-keyframes mymove 
+{
+0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+50% {opacity:0; text-shadow:none; }
+100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }  
+}
+
+
 /* ===============
    自定义页面样式
    =============== */
@@ -123,40 +160,33 @@ li {
 	width: 40%;
 }
 
-
-/* ===============
-   	  时钟样式
-   =============== */
-.clock{
-	 background-color:#202020;
-	 font:bold 1rem Arial, Helvetica, sans-serif;
-	 margin:0;
-	 padding:0;	 	 
-	 width:100%; 
-	 color:#FFF;
+.storehouse .up_img_btn_box{
+  padding-top: 1rem;
+}
+.storehouse .up_img_btn_box input[type="file"]{
+  display: none;
+}
+.storehouse .up_img_btn_box button{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;  
 }
 
-
-#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:2rem; text-align:center; text-shadow:0 0 5px #00c6ff; }
-
-.clock ul { width:100%; margin:0 auto; padding:0px; list-style:none; text-align:center; }
-.clock ul li { display:inline; font-size:5rem; text-align:center; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 5px #00c6ff; }
-
-#point { position:relative; -moz-animation:mymove 1s ease infinite; -webkit-animation:mymove 1s ease infinite; padding-left:10px; padding-right:10px; }
-
-@-webkit-keyframes mymove 
-{
-0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
-50% {opacity:0; text-shadow:none; }
-100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }	
+.storehouse #previewContainer{
+  width: 100%;
+  padding-left: 1px;
+  display: flex;
+  display: -webkit-flex; /* Safari */
+  flex-wrap: wrap;  
+  align-items: flex-start;
+  align-content:space-around;
 }
-
-
-@-moz-keyframes mymove 
-{
-0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
-50% {opacity:0; text-shadow:none; }
-100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }	
+.storehouse #previewContainer .previewTray{
+  border: 1px solid blue;
+  margin: 4px 4px 0 0;
+  width: 30%;  
+  
 }
 
 
