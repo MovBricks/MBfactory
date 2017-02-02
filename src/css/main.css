@@ -19,6 +19,9 @@ ul {
 li {
     list-style: none;
 }
+p {
+  margin: 0;
+}
 
 /* ==========
    工具样式
@@ -157,11 +160,11 @@ li {
 
 
 .right{
-	width: 40%;
+	width: 39%;
 }
 
 .storehouse .up_img_btn_box{
-  padding-top: 1rem;
+  /*padding-top: 1rem;*/
 }
 .storehouse .up_img_btn_box input[type="file"]{
   display: none;
@@ -173,7 +176,7 @@ li {
   display: block;  
 }
 
-.storehouse #previewContainer{
+.storehouse .previewContainer{
   width: 100%;
   padding-left: 1px;
   display: flex;
@@ -182,11 +185,61 @@ li {
   align-items: flex-start;
   align-content:space-around;
 }
-.storehouse #previewContainer .previewTray{
+.storehouse .previewContainer .previewTray{
   border: 1px solid blue;
   margin: 4px 4px 0 0;
   width: 30%;  
   
 }
 
+#imgBoxAndboxName .boxNameBar{
+  margin:1rem 0 0 1rem;
+ 
+  background-color: #555;
+  width: auto;
+
+  display: flex;
+  display: -webkit-flex; /* Safari */
+  flex-wrap: wrap;    
+  align-content:flex-start;
+}
+
+#imgBoxAndboxName .boxNameBar .boxNameString{
+  margin-right: 10px;
+  padding: 3px;
+  border: 2px solid #C71585;
+  border-bottom: 0px;
+  cursor: default;
+}
+
+#imgBoxAndboxName .boxNameBar .boxNameString:hover{
+  /*background-color: red;*/
+  -moz-box-shadow: 0px 3px 10px rgba(0,0,0,0.2);
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.2);
+}
+
+#imgBoxAndboxName .boxNameBar .boxNameStringSelect{
+  background-color: blue;
+}
+
+#imgBoxAndboxName .boxNameBar button{
+  padding: 0;  
+  width: 20px;
+  background: url('../img/img_plus.gif') no-repeat center;
+  background-size: cover;
+}
+
+
+#imgBoxAndboxName .imgBox{
+  width: auto; 
+  border:2px solid #C71585;
+  border-top: 0px;
+  margin-left: 1rem;
+
+  display: flex;
+  display: -webkit-flex; /* Safari */
+  flex-wrap: wrap;  
+  align-items: flex-start;
+  align-content:space-around;
+}
 
