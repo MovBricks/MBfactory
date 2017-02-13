@@ -151,12 +151,6 @@ p {
 	width: 40%;
 }
 
-.watchpainter{
-	
-}
-.painterCanvas{	
-
-}
 
 
 .right{
@@ -243,3 +237,26 @@ p {
   align-content:space-around;
 }
 
+.rightMiddle{
+  width: 100%;
+  /*height: 100px;*/
+}
+
+.addLayer{
+  margin-left: 1rem;
+  padding-top: 10px; 
+}
+
+.layerInfoBar{
+  display: flex;
+  display: -webkit-flex; /* Safari */
+  flex-wrap: wrap;  
+  align-items: center;
+  align-content:space-around;
+  padding-bottom:10px;
+}
+
+.layerInfoBar input{
+  width: 40px;
+  /*margin-right: 10px;*/
+}

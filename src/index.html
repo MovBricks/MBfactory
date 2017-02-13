@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/normalize.css">
         
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <!-- <script type="text/javascript" src="js/local_time_clock.js"></script> -->
+    
 
 
 </head>
@@ -32,132 +31,21 @@
         <canvas id="watchCanvas" width="128" height="128" ></canvas>
     </div>
 </div>
-<div class="middle  pull-left">
+<div class="middle pull-left">
     <div class="watchpainter center">
         <canvas id="painterCanvas" width="128" height="128" style="background-color: #ffff00;width:100%;height:100%;"></canvas>
     </div>
 </div>
-<div class="right  pull-left">
+<div class="right pull-left">
     <div class="storehouse rightUp">
         <div id="imgBoxAndboxName"><div class="boxNameBar"><div class="boxNameString boxNameStringSelect" onclick="click_switch_img_box_handler(this)">仓库1</div><button onclick="add_img_box_handler()"></button></div><div class="imgContainer"><div class="imgBox show"><div class="previewContainer"></div><div class="up_img_btn_box"><input type="file" id="upload_img_btn" multiple="multiple"/><button onclick="up_img_btn_face()"><img src="img/img_plus.gif"/></button></div></div></div></div>      
     </div>
-    <div class="OS_res rightdown">OS_res</div>
+    <div class="addLayer rightMiddle">
+        <ul id="layerInfoBarList"><li class="layerInfoBar"><p>layer1</p><select><option>仓库1</option></select><div>x:<input type="number" name="x" value="10" /></div><div>y:<input type="number" name="y" value="10" /></div><div>width:<input type="number" name="w" value="10" /></div><div>heigh:<input type="number" name="h" value="10"></div></li><li class="layerInfoBar"><p>layer2</p><select><option>仓库1</option></select><div>x:<input type="number" name="x" value="10" /></div><div>y:<input type="number" name="y" value="10" /></div><div>width:<input type="number" name="w" value="10" /></div><div>heigh:<input type="number" name="h" value="10"></div></li></ul>
+    </div>
+    <div class="OS_res rightDown">OS_res</div>
 </div>
     
-
-    <script type="text/javascript">
-    'use strict'
-    //点击名字切换仓库
-    var imgBoxIndex = 0;
-
-    function click_switch_img_box_handler (clickObj) {
-        console.log('click_switch_img_box_handler:' + clickObj.innerHTML);
-
-        for (var i = 0; i <= clickObj.parentNode.childNodes.length - 1; i++) {
-            clickObj.parentNode.childNodes[i].setAttribute("class", "boxNameString");
-        }
-        
-        clickObj.setAttribute("class", "boxNameString boxNameStringSelect");
-
-        var imgAllBoxs = document.getElementById('imgBoxAndboxName').childNodes[1];
-        
-        for(var imgBox of imgAllBoxs.childNodes){
-            imgBox.setAttribute("class", "imgBox hide");
-        }
-
-        var pattImgBoxIndex = new RegExp("\\d+");
-        var str = pattImgBoxIndex.exec(clickObj.innerHTML);
-        imgBoxIndex = parseInt(str)-1;
-
-        imgAllBoxs.childNodes[imgBoxIndex].setAttribute("class", "imgBox show");
-    }
-
-
-    //增加图片仓库index
-    function add_img_box_handler () {
-        console.log('add_img_box_handler');
-        
-        var imgBoxAndboxName = document.getElementById('imgBoxAndboxName');
-
-        //修改仓库名字
-        var boxNameBar = imgBoxAndboxName.childNodes[0];
-        
-        var boxNameNewItem = document.createElement("div");//创建节点
-        boxNameNewItem.setAttribute("class","boxNameString");//设置class属性
-        boxNameNewItem.setAttribute("onclick","click_switch_img_box_handler(this)");
-
-        var boxNameNewItemIndex = boxNameBar.childNodes.length;
-        boxNameNewItem.innerHTML = '仓库'+boxNameNewItemIndex;//设置文字内容
-                
-        boxNameBar.insertBefore(boxNameNewItem,boxNameBar.lastChild);//添加仓库名节点
-
-        //修改仓库内容
-        var imgAllBoxs = imgBoxAndboxName.childNodes[1];
-        
-        for(var imgBox of imgAllBoxs.childNodes){
-            imgBox.setAttribute("class", "imgBox hide");
-        }
-
-        var imgBoxNewItem = document.createElement("div");//创建节点
-        imgBoxNewItem.setAttribute("class","imgBox show");//设置class属性
-        
-        imgBoxNewItem.innerHTML = '<div class="previewContainer"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()"><img src="img/img_plus.gif"/></button></div></div>';//设置节点内容
-                
-        imgAllBoxs.appendChild(imgBoxNewItem);//添加仓库名节点
-
-    };
-
-
-    //修改图片上传按键
-    function up_img_btn_face () {
-        document.getElementById('upload_img_btn').click();
-    };
-
-    window.onload=function(){       
-
-        //图片上传预览订阅事件
-        var fileInput = document.getElementById('upload_img_btn');              
-
-        fileInput.addEventListener('change',function(){
-            console.log('change...');
-
-            if (!fileInput.value){
-                info.innerHTML = '没有选择文件';
-                return ;
-            }   
-
-
-            for(var file of fileInput.files){                   
-                
-                //var file = fileInput.files[i];            
-
-                //info.innerHTML = file.name;
-                if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif'){
-                    alert('不是有效的图片文件!');
-                    return;
-                }
-
-                var reader = new FileReader();
-                reader.onload=function(e){
-                    console.log('reader.onload');
-                    var data = e.target.result;
-
-                    var imgInput=document.createElement("img");//创建input
-                    imgInput.setAttribute("class","previewTray");//设置class属性
-                    
-                    //imgInput.style.backgroundImage='url('+ data +')';//设置背景图
-                    imgInput.src=data;
-
-                    var previewContainer = document.getElementsByClassName('previewContainer')[imgBoxIndex];
-                    previewContainer.appendChild(imgInput);//插入到previewContainer内                   
-                };
-
-                reader.readAsDataURL(file);
-            }
-        });
-    };
-    </script>
-
     <script type="text/javascript">
         'use strict';
 
@@ -179,21 +67,108 @@
         ctx.strokeStyle = '#000';
         ctx.stroke(path);   
 
-        var painter_canvas = document.getElementById('painterCanvas');
-        
-        var context = painter_canvas.getContext("2d");
 
-        context.clearRect(0, 0, painter_canvas.width, painter_canvas.height);
-        context.shadowOffsetX = 2;
-        context.shadowOffsetY = 2;
-        context.shadowBlur = 2;
-        context.shadowColor = '#666666';
-        context.font = '14px Arial';
-        context.fillStyle = '#000';
-        context.fillText('MaibuFactory', 20, 40);
+        //大画布
+        
+        var painter_canvas = document.getElementById('painterCanvas');
+
+        function drawPains () {
+            var layerInfoList = document.getElementById('layerInfoBarList');
+            for (var oneInfoBar of layerInfoList.childNodes) {
+                
+                var x = 10;
+                var y = 10;
+                var w = 10;
+                var h = 10;
+
+                var inputInfoAll = oneInfoBar.getElementsByTagName("input");
+                for (var i = 0; i < inputInfoAll.length; i++) {
+                    var nameString = inputInfoAll[i].getAttribute("name");
+                    var valueInt = parseInt(inputInfoAll[i].getAttribute("value"));
+                    if("x" === nameString)
+                    {
+                        x=valueInt;
+                    }
+                    else if("y" === nameString)
+                    {
+                        y=valueInt;
+                    }
+                    else if("w" === nameString)
+                    {
+                        w=valueInt;
+                    }
+                    else if("h" === nameString)
+                    {
+                        h=valueInt;
+                    }
+                }                
+
+                //矩形
+                var pattLayerNameString = new RegExp("\\d+");
+                var layerNameString = pattLayerNameString.exec(oneInfoBar.childNodes[0].innerHTML);
+                
+                var layer_1 = painter_canvas.getContext("2d");
+                
+                layer_1.beginPath();
+                layer_1.lineWidth="1";
+                layer_1.strokeStyle="red";
+                layer_1.rect(x,y,w,h);
+                layer_1.stroke();
+
+                layer_1.textAlign = "left";
+                layer_1.textBaseline="hanging";
+                layer_1.font = '12px Arial';
+                layer_1.fillStyle = '#000';
+
+                layer_1.fillText(layerNameString, x, y+layer_1.lineWidth);
+            }          
+ 
+        }
+        
+        drawPains();
+
+        var isDragging = false;
+        
+        //var previousSelectedCircle;
+
+        function startDragging() {
+            isDragging = true;
+        }
+
+        function stopDragging() {
+            isDragging = false;
+        }
+     
+        function dragCircle(e) {
+          // 判断圆圈是否开始拖拽
+          if (isDragging == true) {
+            // 判断拖拽对象是否存在
+            if (painter_canvas != null) {
+              // 取得鼠标位置
+              var x = e.pageX - painter_canvas.offsetLeft;
+              var y = e.pageY - painter_canvas.offsetTop;
+     
+              // 将圆圈移动到鼠标位置
+              painter_canvas.x = x;
+              painter_canvas.y = y;
+     
+             // 更新画布
+             drawPains();
+            }
+          }
+        }
+
+        painter_canvas.onmouseup = stopDragging;
+        painter_canvas.onmouseout = stopDragging;
+        painter_canvas.onmousemove = dragCircle;
+        painter_canvas.onmousedown = startDragging;
+
 
     </script>
     
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="js/upload_img.js"></script>
+    <!-- <script type="text/javascript" src="js/local_time_clock.js"></script> -->
 
 </body>
 </html>
