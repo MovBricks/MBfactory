@@ -182,7 +182,8 @@ p {
 .storehouse .previewContainer .previewTray{
   border: 1px solid blue;
   margin: 4px 4px 0 0;
-  width: 30%;  
+  
+  max-width: 30%;
   
 }
 

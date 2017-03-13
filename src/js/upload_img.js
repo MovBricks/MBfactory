@@ -55,12 +55,12 @@
         //修改仓库内容
         var imgAllBoxs = imgBoxAndboxName.children[1];
 
-        for (var imgBox of imgAllBoxs.children) {
-            imgBox.setAttribute("class", "imgBox hide");
-        }
+        // for (var imgBox of imgAllBoxs.children) {
+        //     imgBox.setAttribute("class", "imgBox hide");
+        // }
 
         var imgBoxNewItem = document.createElement("div"); //创建节点
-        imgBoxNewItem.setAttribute("class", "imgBox show"); //设置class属性
+        imgBoxNewItem.setAttribute("class", "imgBox hide"); //设置class属性
 
         imgBoxNewItem.innerHTML = '<div class="previewContainer"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()"><img src="img/img_plus.gif"/></button></div></div>'; //设置节点内容
 
