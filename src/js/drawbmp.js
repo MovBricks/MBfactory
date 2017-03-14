@@ -6,6 +6,7 @@
       this.y = y;
       this.w = w;
       this.h = h;
+      this.img_idx = 0;
     }
 
     //保存画布上所有的圆圈
@@ -18,6 +19,7 @@
     //图层列表
     var layerInfoBarList = document.getElementById('layerInfoBarList');
 
+    //canvas->input
     function getLayerInfoFromCanvasToInput (){
 
         for (var i = 0; i<layerInfoBarList.children.length;i++) {          
@@ -36,7 +38,7 @@
         }
     }
 
-
+    //input->canvas
     function getLayerInfoFromInputToCanvas (){
 
         layers = [];
@@ -88,11 +90,24 @@
             var y = layers[i].y;
             var w = layers[i].w;
             var h = layers[i].h;
- 
+            
+            //绘制图片
+            
+            var previewContainer = document.getElementsByClassName('previewContainer');
+            var box_idx = oneInfoBar.children[1].selectedIndex;
+            var imgData = previewContainer[box_idx].children[layers[i].img_idx];
+            if(imgData !== undefined){
+                var image = new Image();
+                image.src = imgData.currentSrc;
+                painter_ctx.drawImage(image,x, y, w, h);
+            }
+
+
             //绘制图层矩形
             var pattLayerNameString = new RegExp("\\d+");
             var layerNameString = pattLayerNameString.exec(oneInfoBar.children[0].innerHTML);
-     
+            
+
             painter_ctx.beginPath();
             painter_ctx.lineWidth = "1";
             painter_ctx.strokeStyle = "red";
@@ -105,6 +120,8 @@
             painter_ctx.fillStyle = '#000';
 
             painter_ctx.fillText(layerNameString, x, y + painter_ctx.lineWidth);
+
+            
         }
 
         var painter_ctx_data = painter_ctx.getImageData(0, 0, painter_canvas.width, painter_canvas.height);

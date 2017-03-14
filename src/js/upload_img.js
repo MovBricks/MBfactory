@@ -105,23 +105,13 @@
                 imgInput.src = data;
 
                 var previewContainer = document.getElementsByClassName('previewContainer')[imgBoxIndex];
-                previewContainer.appendChild(imgInput); //插入到previewContainer内                   
+                previewContainer.appendChild(imgInput); //插入到previewContainer内  
+                drawPains();                 
             };
 
             reader.readAsDataURL(file);
         }
     };
-
-    // window.onload = function () {
-
-    //     //订阅事件-图片上传
-    //     var fileInput = document.getElementById('upload_img_btn');
-
-    //     fileInput.addEventListener('change', function () {
-    //         up_img_preview_handler(document.getElementById('upload_img_btn'));
-    //     });
-
-    // };
 
     //初始化订阅事件
     var init = function (){       
