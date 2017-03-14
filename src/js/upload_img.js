@@ -140,7 +140,16 @@
         });
     };
 
+    var exit = function (){
+            
+        var fileInput = document.getElementById('upload_img_btn');
+
+        fileInput.removeEventListener('change', function () {
+            up_img_preview_handler(document.getElementById('upload_img_btn'));
+        });  
+    };
 
     (function () {
-        startList.push(init);        
+        startList.push(init);
+        exitList.push(exit);
     })();

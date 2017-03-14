@@ -1,5 +1,5 @@
     'use strict'
-    
+  
     //增加图层
     function click_create_layer_handler() {
         console.log('click_create_layer_handler');
@@ -75,7 +75,16 @@
         });       
     };
 
+    var exit = function (){
+        
+        var BoxNameBar = document.getElementById('imgBoxAndboxNameBoxNameBar');
+        BoxNameBar.removeEventListener('DOMSubtreeModified',function(){
+            console.log('imgBoxAndboxNameBoxNameBar DOMSubtreeModified!!!!!');
+            change_select_option();
+        });       
+    };
 
     (function () {
-        startList.push(init);        
+        startList.push(init);
+        exitList.push(exit);
     })();

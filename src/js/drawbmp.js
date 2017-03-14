@@ -1,6 +1,6 @@
     'use strict';
 
-    //这个方法用来储存每个圆圈对象
+    //这个方法用来储存每个图层对象
     function layerInfo(x, y, w, h) {
       this.x = x;
       this.y = y;
@@ -18,35 +18,61 @@
     //图层列表
     var layerInfoBarList = document.getElementById('layerInfoBarList');
 
+    function getLayerInfoFromCanvasToInput (){
+
+        for (var i = 0; i<layerInfoBarList.children.length;i++) {          
+            
+            var inputInfoAll = layerInfoBarList.children[i].getElementsByTagName("input");
+            var oneLayer = layers[i];
+
+            for (var j = 0; j < inputInfoAll.length; j++) {
+
+                var nameString = inputInfoAll[j].getAttribute("name");                
+              
+                inputInfoAll[j].value = oneLayer[nameString];            
+                
+            }
+            
+        }
+    }
+
+
     function getLayerInfoFromInputToCanvas (){
 
         layers = [];
         for (var oneInfoBar of layerInfoBarList.children) {
 
-            var x = 10;
-            var y = 10;
-            var w = 10;
-            var h = 10;
+            var oneLayer = new layerInfo(10, 10, 10, 10);
+            var input_num_lmt_flag  = 0;//限制输入数字
 
             var inputInfoAll = oneInfoBar.getElementsByTagName("input");
             for (var i = 0; i < inputInfoAll.length; i++) {
                 var nameString = inputInfoAll[i].getAttribute("name");
                 var valueInt = inputInfoAll[i].valueAsNumber;
-                if ("x" === nameString) {
-                    x = valueInt;
-                } else if ("y" === nameString) {
-                    y = valueInt;
-                } else if ("w" === nameString) {
-                    w = valueInt;
-                } else if ("h" === nameString) {
-                    h = valueInt;
+
+                if((valueInt>128)||(valueInt < 0)){
+                    input_num_lmt_flag = 1;
+
+                    valueInt = valueInt > 128 ? 128:valueInt;
+                    valueInt = valueInt < 0 ? 0:valueInt;
                 }
+                if(parseInt(valueInt) !== valueInt){
+                    input_num_lmt_flag = 1;
+                    valueInt = parseInt(valueInt);
+                }
+
+                oneLayer[nameString] = valueInt;
             }
 
-            //写入内存中            
-            var oneLayer = new layerInfo(x, y, w, h);
-            layers.push(oneLayer);
+            //写入内存中
+            layers.push(oneLayer);   
+            if(input_num_lmt_flag === 1)
+            {
+                getLayerInfoFromCanvasToInput();
+            }         
         }
+
+        
     }
 
     function drawPains() {    
@@ -62,12 +88,7 @@
             var y = layers[i].y;
             var w = layers[i].w;
             var h = layers[i].h;
-           
-            // var x = 10;
-            // var y = 10;
-            // var w = 10;
-            // var h = 10;
-
+ 
             //绘制图层矩形
             var pattLayerNameString = new RegExp("\\d+");
             var layerNameString = pattLayerNameString.exec(oneInfoBar.children[0].innerHTML);
@@ -96,8 +117,8 @@
     var selectedLayer;
 
     function isInner(ox,oy,layer) {
-        var x = ox/(painter_canvas.offsetWidth/128);
-        var y = oy/(painter_canvas.offsetHeight/128);
+        var x = ox/(painter_canvas.offsetWidth/painter_canvas.width);
+        var y = oy/(painter_canvas.offsetHeight/painter_canvas.height);
         if((layer.x <= x)&&(x<=layer.x+layer.w)&&(layer.y <= y)&&(y <= layer.y+layer.h)){
             return true;
         }
@@ -128,6 +149,10 @@
     }
 
     function stopDragging() {
+        if(isDragging === true)
+        {
+            getLayerInfoFromCanvasToInput();
+        }
         isDragging = false;
     }
 
@@ -141,13 +166,13 @@
                 var y = e.pageY - painter_canvas.offsetTop;
 
                 // 将圆圈移动到鼠标位置，注意真实坐标与canvas内坐标变换
-                selectedLayer.x = x/(painter_canvas.offsetWidth/128)-selectedLayer.w/2;
-                selectedLayer.y = y/(painter_canvas.offsetHeight/128)-selectedLayer.h/2;
+                selectedLayer.x = parseInt(x/(painter_canvas.offsetWidth/painter_canvas.height)-selectedLayer.w/2);
+                selectedLayer.y = parseInt(y/(painter_canvas.offsetHeight/painter_canvas.width)-selectedLayer.h/2);
                
-                selectedLayer.x = selectedLayer.x > 128- selectedLayer.w? 128-selectedLayer.w : selectedLayer.x;
+                selectedLayer.x = selectedLayer.x > painter_canvas.width- selectedLayer.w? painter_canvas.width-selectedLayer.w : selectedLayer.x;
                 selectedLayer.x = selectedLayer.x < 0 ? 0 :selectedLayer.x;
 
-                selectedLayer.y = selectedLayer.y > 128 - selectedLayer.h ? 128-selectedLayer.h : selectedLayer.y;
+                selectedLayer.y = selectedLayer.y > painter_canvas.height - selectedLayer.h ? painter_canvas.height-selectedLayer.h : selectedLayer.y;
                 selectedLayer.y = selectedLayer.y < 0 ? 0 :selectedLayer.y;
                 
                 // 更新画布
@@ -196,6 +221,25 @@
     };
 
 
+    var exit = function (){        
+        
+        layerInfoBarList.parentElement.lastElementChild.removeEventListener('click',function(){
+            console.log('lastChild click!!!!!');
+            getLayerInfoFromInputToCanvas();
+            reListenAllInput();
+            drawPains();
+        });   
+
+        for (var oneInfoBar of layerInfoBarList.children) {
+            //input数值改变
+            oneInfoBar.removeEventListener('change',function(){ 
+                getLayerInfoFromInputToCanvas();  
+                drawPains();
+            });   
+        }
+    };
+
     (function () {
-        startList.push(init);        
+        startList.push(init);
+        exitList.push(exit);
     })();
