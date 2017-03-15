@@ -99,7 +99,7 @@
             if(imgData !== undefined){
                 var image = new Image();
                 image.src = imgData.currentSrc;
-                painter_ctx.drawImage(image,x, y, w, h);
+                painter_ctx.drawImage(image,0,0,w,h,x, y,w,h);
             }
 
 

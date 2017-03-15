@@ -25,7 +25,7 @@
         imgBoxIndex = parseInt(str) - 1;
 
         imgAllBoxs.children[imgBoxIndex].setAttribute("class", "imgBox show");
-    };
+    }
 
 
     //增加图片仓库index
@@ -65,13 +65,13 @@
         imgBoxNewItem.innerHTML = '<div class="previewContainer"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()"><img src="img/img_plus.gif"/></button></div></div>'; //设置节点内容
 
         imgAllBoxs.appendChild(imgBoxNewItem); //添加仓库内容节点        
-    };
+    }
 
 
     //修改图片上传按键
     function up_img_btn_face() {
         document.getElementById('upload_img_btn').click();
-    };
+    }
 
     //上传图片预览处理函数
     function up_img_preview_handler(fileInput) {
@@ -88,7 +88,7 @@
             //var file = fileInput.files[i];            
 
             //info.innerHTML = file.name;
-            if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+            if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/bmp') {
                 alert('不是有效的图片文件!');
                 return;
             }
@@ -111,7 +111,7 @@
 
             reader.readAsDataURL(file);
         }
-    };
+    }
 
     //初始化订阅事件
     var init = function (){       
