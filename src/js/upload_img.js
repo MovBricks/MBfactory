@@ -93,6 +93,8 @@
                 return;
             }
 
+            uploadDate.append(imgBoxIndex.toString(),file);
+
             var reader = new FileReader();
             reader.onload = function (e) {
                 console.log('reader.onload');

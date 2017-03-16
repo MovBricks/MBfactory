@@ -10,7 +10,7 @@ function fail(code) {
 }
 
 var url = "http://";
-var date = new FormData($("from[name='form1']")[0]);
+
 
 function upload_web_data_to_server() {
 

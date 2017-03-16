@@ -1,16 +1,32 @@
     'use strict';
 
     //这个方法用来储存每个图层对象
-    function layerInfo(x, y, w, h) {
+    function layerInfo(x, y, w, h,layer_idx) {
       this.x = x;
       this.y = y;
       this.w = w;
       this.h = h;
       this.img_idx = 0;
+      this.z = 0;
+      this.layer_idx = layer_idx;
     }
 
-    //保存画布上所有的圆圈
-    var layers = [new layerInfo(10,10,10,10)];
+    //数组排序的方法
+    function layersSorting(l1,l2){
+        if(l1.z < l2.z){
+            return -1;
+        }
+        else if(l1.z > l2.z){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+
+    }
+
+    //保存画布上所有的图层
+    var layers = [new layerInfo(10,10,10,10,0)];
      
     //大画布
     var painter_canvas = document.getElementById('painterCanvas');
@@ -24,8 +40,9 @@
 
         for (var i = 0; i<layerInfoBarList.children.length;i++) {          
             
-            var inputInfoAll = layerInfoBarList.children[i].getElementsByTagName("input");
             var oneLayer = layers[i];
+            var inputInfoAll = layerInfoBarList.children[layers[i].layer_idx].getElementsByTagName("input");
+            
 
             for (var j = 0; j < inputInfoAll.length; j++) {
 
@@ -38,13 +55,33 @@
         }
     }
 
+    function find_old_layer_idx(infoBarIdx){
+        for(var idx = 0;idx<layers.length;idx++){
+            if(layers[idx].layer_idx === infoBarIdx){
+                return idx;
+            }
+        }
+    }
+
     //input->canvas
     function getLayerInfoFromInputToCanvas (){
 
-        layers = [];
-        for (var oneInfoBar of layerInfoBarList.children) {
+        var temp_layers = [];
 
-            var oneLayer = new layerInfo(10, 10, 10, 10);
+        for (var j = 0; j<layerInfoBarList.children.length;j++) {
+
+            var oneInfoBar = layerInfoBarList.children[j];
+            var old_layer_idx = find_old_layer_idx(j);
+
+            var oneLayer = new layerInfo(10, 10, 10, 10,j);
+            
+            if(layers[old_layer_idx] !== undefined){
+                oneLayer.img_idx = layers[old_layer_idx].img_idx;
+                oneLayer.layer_idx = layers[old_layer_idx].layer_idx;
+                oneLayer.z = layers[old_layer_idx].z;
+            }
+
+
             var input_num_lmt_flag  = 0;//限制输入数字
 
             var inputInfoAll = oneInfoBar.getElementsByTagName("input");
@@ -67,14 +104,15 @@
             }
 
             //写入内存中
-            layers.push(oneLayer);   
+            temp_layers.push(oneLayer);   
             if(input_num_lmt_flag === 1)
             {
                 getLayerInfoFromCanvasToInput();
             }         
         }
 
-        
+        layers.splice(0,layers.length);
+        layers = temp_layers;        
     }
 
     function drawPains() {    
@@ -82,9 +120,11 @@
         var painter_ctx = painter_canvas.getContext("2d");
         painter_ctx.clearRect(0, 0, painter_canvas.width, painter_canvas.height);       
 
+        layers.sort(layersSorting);
+
         for (var i = 0; i<layerInfoBarList.children.length;i++) {
 
-            var oneInfoBar = layerInfoBarList.children[i];
+            var oneInfoBar = layerInfoBarList.children[layers[i].layer_idx];
 
             var x = layers[i].x;
             var y = layers[i].y;
@@ -147,16 +187,18 @@
       var clickX = e.pageX - painter_canvas.offsetLeft;
       var clickY = e.pageY - painter_canvas.offsetTop;
  
-      // 查找被单击的圆圈
-      for(var i=0; i<layers.length; i++) {
+      // 查找被单击的图层
+      layers.sort(layersSorting);
+      //倒序查找最高层图层
+      for(var i=layers.length-1; i>=0; i--) {
         var layer = layers[i];
         
         // 判断这个点是否在图层中
         if (isInner(clickX,clickY,layer)) {
-                      
+          layer.z = layers[layers.length-1].z+1;           
           selectedLayer = layer;   
- 
-          // 使圆圈允许拖拽
+         
+          // 使图层允许拖拽
           isDragging = true; 
            
           //停止搜索
@@ -174,7 +216,7 @@
     }
 
     function dragStatus(e) {
-        // 判断圆圈是否开始拖拽
+        // 判断图层是否开始拖拽
         if (isDragging == true) {
             // 判断拖拽对象是否存在
             if (selectedLayer != null) {
@@ -182,7 +224,7 @@
                 var x = e.pageX - painter_canvas.offsetLeft;
                 var y = e.pageY - painter_canvas.offsetTop;
 
-                // 将圆圈移动到鼠标位置，注意真实坐标与canvas内坐标变换
+                // 将图层移动到鼠标位置，注意真实坐标与canvas内坐标变换
                 selectedLayer.x = parseInt(x/(painter_canvas.offsetWidth/painter_canvas.height)-selectedLayer.w/2);
                 selectedLayer.y = parseInt(y/(painter_canvas.offsetHeight/painter_canvas.width)-selectedLayer.h/2);
                
