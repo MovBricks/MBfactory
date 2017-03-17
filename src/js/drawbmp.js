@@ -151,7 +151,7 @@
             painter_ctx.beginPath();
             painter_ctx.lineWidth = "1";
             painter_ctx.strokeStyle = "#003300";
-            painter_ctx.rect(x, y, w, h);
+            painter_ctx.rect(x+0.5, y+0.5, w, h);//使画1px线变得更清晰
             painter_ctx.stroke();
 
             painter_ctx.textAlign = "left";
