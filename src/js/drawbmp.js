@@ -150,14 +150,14 @@
 
             painter_ctx.beginPath();
             painter_ctx.lineWidth = "1";
-            painter_ctx.strokeStyle = "red";
+            painter_ctx.strokeStyle = "#003300";
             painter_ctx.rect(x, y, w, h);
             painter_ctx.stroke();
 
             painter_ctx.textAlign = "left";
             painter_ctx.textBaseline = "hanging";
             painter_ctx.font = '12px Arial';
-            painter_ctx.fillStyle = '#000';
+            painter_ctx.fillStyle = '#660000';
 
             painter_ctx.fillText(layerNameString, x, y + painter_ctx.lineWidth);
 
