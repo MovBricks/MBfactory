@@ -1,13 +1,25 @@
     'use strict'
-  
+    //删除图层
+    function click_remove_layer_handler(Obj){
+        console.log('click_remove_layer_handler');
+
+        //删除节点
+        var parObj = Obj.parentNode.parentNode;
+        parObj.removeChild(Obj.parentNode);
+
+        //刷新layers数组
+        getLayerInfoFromInputToCanvas();
+        drawPains();
+
+    }
+    
     //增加图层
     function click_create_layer_handler() {
         console.log('click_create_layer_handler');
         var layerInfoBarList = document.getElementById('layerInfoBarList');
 
-        //添加节点    
-        var layerInfoBar = layerInfoBarList.children[0];
-
+        //添加节点  
+        
         var layerInfoBarNewItem = document.createElement("li"); //创建节点
         layerInfoBarNewItem.setAttribute("class", "layerInfoBar"); //设置class属性        
         
@@ -15,10 +27,12 @@
         //添加节点的名称
         var layerInfoBarNewItemName = document.createElement("p");
         
-        var nameStr = RegExp('.*\\D').exec(layerInfoBar.children[0].innerHTML)[0];//取出第一个元素的文字
-        var layerInfoBarNewItemIndex = layerInfoBarList.children.length+1;
+        var lastNameStr = layerInfoBarList.children[layerInfoBarList.children.length-1].children[0].innerHTML;                
+        var nameIdx = parseInt(lastNameStr.replace(/\D/g,""))+1;
+        var nameStr = lastNameStr.replace(/\d/g,"");
+     
 
-        layerInfoBarNewItemName.innerHTML = nameStr + layerInfoBarNewItemIndex;        
+        layerInfoBarNewItemName.innerHTML = nameStr + nameIdx;        
         layerInfoBarNewItem.appendChild(layerInfoBarNewItemName);
 
         //添加节点的select
@@ -35,7 +49,9 @@
                     <div>x:<input type="number" name="x" value="10" /></div>
                     <div>y:<input type="number" name="y" value="10" /></div>
                     <div>width:<input type="number" name="w" value="10" /></div>
-                    <div>heigh:<input type="number" name="h" value="10"></div> `; //设置文字内容
+                    <div>heigh:<input type="number" name="h" value="10"></div>
+                    <div>img_idx:<input type="number" name="img_idx" value="0"></div>
+                    <button onclick="click_remove_layer_handler(this)"></button>`; //设置文字内容
                
     
         layerInfoBarList.appendChild(layerInfoBarNewItem); 

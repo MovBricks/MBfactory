@@ -42,13 +42,25 @@
         <div class="storehouse rightUp">
             <div id="imgBoxAndboxName">
                 <div class="boxNameBar" id="imgBoxAndboxNameBoxNameBar">
-                    <div class="boxNameString boxNameStringSelect" onclick="click_switch_img_box_handler(this)">仓库1</div><button onclick="add_img_box_handler()"></button></div>
-                <div class="imgContainer">
-                    <div class="imgBox show">
-                        <div class="previewContainer"></div>
-                        <div class="up_img_btn_box"><input type="file" id="upload_img_btn" multiple="multiple" /><button onclick="up_img_btn_face()"><img src="img/img_plus.gif" draggable="false"/></button></div>
-                    </div>
+                    <ul id="boxNameBarList">
+                        <li class="boxNameStringSelect">
+                            <div class="boxNameString" onclick="click_switch_img_box_handler(this)">仓库1</div>
+                            <button onclick="remove_img_box_handler(this)"></button>
+                        </li>
+                        <button class="addImgBoxBtn" onclick="add_img_box_handler()"></button>
+                    </ul>                    
                 </div>
+                <ul class="imgContainer" id="imgBoxList">
+                    <li class="imgBox show">
+                        <div class="previewContainer"></div>
+                        <div class="up_img_btn_box">
+                            <input type="file" id="upload_img_btn" multiple="multiple" />
+                            <button onclick="up_img_btn_face()">
+                                <img src="img/img_plus.gif" draggable="false"/>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="addLayer rightMiddle">
@@ -59,11 +71,15 @@
                     <div>y:<input type="number" name="y" value="10" /></div>
                     <div>width:<input type="number" name="w" value="10" /></div>
                     <div>heigh:<input type="number" name="h" value="10"></div>
+                    <div>img_idx:<input type="number" name="img_idx" value="0"></div>
+                    <button onclick="click_remove_layer_handler(this)"></button>
                 </li>               
             </ul>
             <button onclick="click_create_layer_handler()">增加图层</button>
         </div>
-        <div><button onclick="upload_web_data_to_server()">上传生成表盘</button></div>
+        <div>
+            <button onclick="upload_web_data_to_server()">上传生成表盘</button>
+        </div>
         <div class="OS_res rightDown">OS_res</div>
         <div class="sda">asdsad</div>
     </div>

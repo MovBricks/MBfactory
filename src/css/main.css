@@ -188,42 +188,63 @@ p {
 }
 
 #imgBoxAndboxName .boxNameBar{
-  margin:1rem 0 0 1rem;
- 
+  margin:1rem 0 0 1rem; 
   background-color: #aaa;
   width: auto;
 
+}
+
+#imgBoxAndboxName .boxNameBar #boxNameBarList{
+  
   display: flex;
   display: -webkit-flex; /* Safari */
   flex-wrap: wrap;    
   align-content:flex-start;
 }
 
+#imgBoxAndboxName .boxNameBar li{
+
+  border: 2px solid #C71585;
+  display: inline-flex;
+  display: -webkit-inline-flex; /* Safari */
+  
+}
 #imgBoxAndboxName .boxNameBar .boxNameString{
   margin-right: 10px;
   padding: 3px;
-  border: 2px solid #C71585;
+  
   border-bottom: 0px;
   cursor: default;
 }
 
-#imgBoxAndboxName .boxNameBar .boxNameString:hover{
+#imgBoxAndboxName .boxNameBar li{
+  margin-right: 5px;
+}
+
+#imgBoxAndboxName .boxNameBar li:hover{
   /*background-color: red;*/
   -moz-box-shadow: 0px 3px 10px rgba(0,0,0,0.2);
   box-shadow: 0px 3px 10px rgba(0,0,0,0.2);
 }
 
 #imgBoxAndboxName .boxNameBar .boxNameStringSelect{
-  background-color: blue;
+  background-color: lightcoral;
 }
 
-#imgBoxAndboxName .boxNameBar button{
+#imgBoxAndboxName .boxNameBar .addImgBoxBtn{
   padding: 0;  
-  width: 20px;
+  width: 25px;
+  height: 25px;   
   background: url('../img/img_plus.gif') no-repeat center;
   background-size: cover;
 }
 
+#imgBoxAndboxName .boxNameBar li button{
+  padding: 0;  
+  width: 20px;
+  background: url('../img/close_icon.gif') no-repeat center;
+  background-size: cover;
+}
 
 #imgBoxAndboxName .imgBox{
   width: auto; 
@@ -260,4 +281,13 @@ p {
 .layerInfoBar input{
   width: 40px;
   /*margin-right: 10px;*/
+}
+
+.layerInfoBar button{
+  padding: 0;
+  margin-left: 10px;  
+  width: 20px;
+  height: 20px;
+  background: url('../img/close_icon.gif') no-repeat center;
+  background-size: cover;
 }

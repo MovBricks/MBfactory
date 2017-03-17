@@ -8,11 +8,11 @@
     function click_switch_img_box_handler(clickObj) {
         console.log('click_switch_img_box_handler:' + clickObj.innerHTML);
 
-        for (var i = 0; i <= clickObj.parentNode.children.length - 1; i++) {
-            clickObj.parentNode.children[i].setAttribute("class", "boxNameString");
+        for (var i = 0; i <= clickObj.parentNode.parentNode.children.length - 2; i++) {
+            clickObj.parentNode.parentNode.children[i].setAttribute("class", "");
         }
 
-        clickObj.setAttribute("class", "boxNameString boxNameStringSelect");
+        clickObj.parentNode.setAttribute("class", "boxNameStringSelect");
 
         var imgAllBoxs = document.getElementById('imgBoxAndboxName').children[1];
 
@@ -27,39 +27,72 @@
         imgAllBoxs.children[imgBoxIndex].setAttribute("class", "imgBox show");
     }
 
+    //删除图片仓库index
+    function remove_img_box_handler(Obj) {
+        console.log('remove_img_box_handler');
+
+        var parObj = Obj.parentNode;
+        var parparObj = parObj.parentNode;
+
+        //删除仓库名数组中对应的名字
+        var child_idx = imgBoxNameArray.indexOf(parObj.children[0].innerHTML);
+        imgBoxNameArray.splice(child_idx,1);
+
+        //仓库内容节点        
+        var imgBoxList = document.getElementById('imgBoxList');
+        imgBoxList.removeChild(imgBoxList.children[child_idx]);
+
+        //删除上传数据对象
+        delete uploadDate[child_idx.toString()];
+
+        //删除仓库名字节点
+        parparObj.removeChild(parObj);
+
+        drawPains();
+    }
 
     //增加图片仓库index
     function add_img_box_handler() {
         console.log('add_img_box_handler');
-
-        var imgBoxAndboxName = document.getElementById('imgBoxAndboxName');
+       
 
         //修改仓库名字
-        var boxNameBar = imgBoxAndboxName.children[0];
+        var boxNameBarList = document.getElementById('boxNameBarList');
 
-        var boxNameNewItem = document.createElement("div"); //创建节点
-        boxNameNewItem.setAttribute("class", "boxNameString"); //设置class属性
-        boxNameNewItem.setAttribute("onclick", "click_switch_img_box_handler(this)");
+        var boxNameNewItem = document.createElement("li"); //创建节点
 
-        var boxNameNewItemIndex = boxNameBar.children.length;
+            //创建仓库名节点
+            var newNameString = document.createElement("div"); 
+            newNameString.setAttribute("class", "boxNameString");
+            newNameString.setAttribute("onclick", "click_switch_img_box_handler(this)");
+
+            var lastNameStr = boxNameBarList.children[boxNameBarList.children.length-2].children[0].innerHTML;                
+            var nameIdx = parseInt(lastNameStr.replace(/\D/g,""))+1;
+            var nameStr = lastNameStr.replace(/\d/g,"");
+                    
+            newNameString.innerHTML = nameStr + nameIdx; //设置文字内容
+            boxNameNewItem.appendChild(newNameString);
+
+            //创建仓库名删除按键
+            var newNameButton = document.createElement("button"); 
+            newNameButton.setAttribute("onclick", "remove_img_box_handler(this)");
+            boxNameNewItem.appendChild(newNameButton);
         
-        
-        var nameStr = RegExp('.*\\D').exec(boxNameBar.children[0].innerHTML)[0];//取出第一个元素的文字
-       
-        boxNameNewItem.innerHTML = nameStr + boxNameNewItemIndex; //设置文字内容
+        //添加之前加入数组
+        imgBoxNameArray.push(newNameString.innerHTML);
 
-        imgBoxNameArray.push(boxNameNewItem.innerHTML);//添加之前加入数组
-        boxNameBar.insertBefore(boxNameNewItem, boxNameBar.lastChild); //添加仓库名节点
+        boxNameBarList.insertBefore(boxNameNewItem,boxNameBarList.lastElementChild);//添加节点
+        
        
 
         //修改仓库内容
-        var imgAllBoxs = imgBoxAndboxName.children[1];
+        var imgAllBoxs = document.getElementById('imgBoxList');
 
         // for (var imgBox of imgAllBoxs.children) {
         //     imgBox.setAttribute("class", "imgBox hide");
         // }
 
-        var imgBoxNewItem = document.createElement("div"); //创建节点
+        var imgBoxNewItem = document.createElement("li"); //创建节点
         imgBoxNewItem.setAttribute("class", "imgBox hide"); //设置class属性
 
         imgBoxNewItem.innerHTML = '<div class="previewContainer"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()"><img src="img/img_plus.gif"/></button></div></div>'; //设置节点内容
@@ -120,7 +153,7 @@
         
 
         imgBoxNameArray.push(
-            document.getElementById('imgBoxAndboxNameBoxNameBar').children[0].innerHTML
+            document.getElementById('boxNameBarList').children[0].children[0].innerHTML
         );
 
 
