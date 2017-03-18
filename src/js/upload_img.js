@@ -14,7 +14,7 @@
 
         clickObj.parentNode.setAttribute("class", "boxNameStringSelect");
 
-        var imgAllBoxs = document.getElementById('imgBoxAndboxName').children[1];
+        var imgAllBoxs = document.getElementById('imgBoxList');
 
         for (var imgBox of imgAllBoxs.children) {
             imgBox.setAttribute("class", "imgBox hide");
@@ -24,7 +24,14 @@
         var str = pattImgBoxIndex.exec(clickObj.innerHTML);
         imgBoxIndex = parseInt(str) - 1;
 
-        imgAllBoxs.children[imgBoxIndex].setAttribute("class", "imgBox show");
+        for(var i=0;i<imgAllBoxs.children.length;i++){
+            var imgBoxContainerName = imgAllBoxs.children[i].children[0].getAttribute("name");
+            if(imgBoxContainerName === imgBoxIndex.toString()){
+                imgAllBoxs.children[i].setAttribute("class", "imgBox show");
+                break;
+            }
+        }
+        // imgAllBoxs.children[imgBoxIndex].setAttribute("class", "imgBox show");
     }
 
     //删除图片仓库index
@@ -42,14 +49,41 @@
         var imgBoxList = document.getElementById('imgBoxList');
         imgBoxList.removeChild(imgBoxList.children[child_idx]);
 
-        //删除上传数据对象
-        delete uploadDate[child_idx.toString()];
-
+        //删除图片数组对应数据
+        var boxIdx = parseInt(parObj.children[0].innerHTML.replace(/\D/g,""))-1;
+        for(var i = imgDataObjArray.length-1; i>=0;i--){
+            if(imgDataObjArray[i].box === boxIdx){
+                imgDataObjArray.splice(i,1);                
+            }
+        }
+        
         //删除仓库名字节点
         parparObj.removeChild(parObj);
 
         drawPains();
     }
+
+    //删除图片
+    function remove_img_handler(Obj){
+            
+        var parObj = Obj.parentNode;     
+        var parObjName = parseInt(parObj.getAttribute("name"));
+        var ObjName = parseInt(Obj.getAttribute("name"));
+        
+        //删除图片数组对应数据   
+        for(var i = imgDataObjArray.length-1; i>=0;i--){
+            if((imgDataObjArray[i].box === parObjName)&&(imgDataObjArray[i].idx === ObjName)){
+                imgDataObjArray.splice(i,1);
+                break;
+            }
+        }
+
+        //删除节点           
+        parObj.removeChild(Obj);
+       
+        drawPains();
+    }
+
 
     //增加图片仓库index
     function add_img_box_handler() {
@@ -82,9 +116,7 @@
         imgBoxNameArray.push(newNameString.innerHTML);
 
         boxNameBarList.insertBefore(boxNameNewItem,boxNameBarList.lastElementChild);//添加节点
-        
        
-
         //修改仓库内容
         var imgAllBoxs = document.getElementById('imgBoxList');
 
@@ -95,12 +127,14 @@
         var imgBoxNewItem = document.createElement("li"); //创建节点
         imgBoxNewItem.setAttribute("class", "imgBox hide"); //设置class属性
 
-        imgBoxNewItem.innerHTML = '<div class="previewContainer"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()"><img src="img/img_plus.gif"/></button></div></div>'; //设置节点内容
+        var nameLength = boxNameBarList.children.length-2;
+
+        imgBoxNewItem.innerHTML = '<div class="previewContainer" name="'+nameLength+'"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()"></button></div></div>'; //设置节点内容
 
         imgAllBoxs.appendChild(imgBoxNewItem); //添加仓库内容节点        
     }
 
-
+   
     //修改图片上传按键
     function up_img_btn_face() {
         document.getElementById('upload_img_btn').click();
@@ -118,15 +152,11 @@
 
         for (var file of fileInput.files) {
 
-            //var file = fileInput.files[i];            
-
-            //info.innerHTML = file.name;
+            
             if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/bmp') {
                 alert('不是有效的图片文件!');
                 return;
-            }
-
-            uploadDate.append(imgBoxIndex.toString(),file);
+            }           
 
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -135,15 +165,23 @@
 
                 var imgInput = document.createElement("img"); //创建input
                 imgInput.setAttribute("class", "previewTray"); //设置class属性
-
-                //imgInput.style.backgroundImage='url('+ data +')';//设置背景图
+                imgInput.setAttribute("onclick", "remove_img_handler(this)"); //设置onclick属性
+                               
                 imgInput.src = data;
 
                 var previewContainer = document.getElementsByClassName('previewContainer')[imgBoxIndex];
                 previewContainer.appendChild(imgInput); //插入到previewContainer内  
+                
+                imgInput.setAttribute("name", previewContainer.children.length-1); //设置name属性,标记图片序号,便于删除时查找
+
+
+                //保存进数组
+                var imgObj = new imgDataObj(imgBoxIndex,previewContainer.children.length-1,file);
+                imgDataObjArray.push(imgObj);
+                
                 drawPains();                 
             };
-
+            
             reader.readAsDataURL(file);
         }
     }

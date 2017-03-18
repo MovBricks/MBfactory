@@ -52,36 +52,36 @@
                 </div>
                 <ul class="imgContainer" id="imgBoxList">
                     <li class="imgBox show">
-                        <div class="previewContainer"></div>
+                        <div class="previewContainer" name="0"></div>
                         <div class="up_img_btn_box">
                             <input type="file" id="upload_img_btn" multiple="multiple" />
-                            <button onclick="up_img_btn_face()">
-                                <img src="img/img_plus.gif" draggable="false"/>
-                            </button>
+                            <button onclick="up_img_btn_face()"></button>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="addLayer rightMiddle">
-            <ul id="layerInfoBarList">
-                <li class="layerInfoBar" id="layer1">
-                    <p>图层1</p><select><option>仓库1</option></select>
-                    <div>x:<input type="number" name="x" value="10" /></div>
-                    <div>y:<input type="number" name="y" value="10" /></div>
-                    <div>width:<input type="number" name="w" value="10" /></div>
-                    <div>heigh:<input type="number" name="h" value="10"></div>
-                    <div>img_idx:<input type="number" name="img_idx" value="0"></div>
-                    <button onclick="click_remove_layer_handler(this)"></button>
-                </li>               
-            </ul>
-            <button onclick="click_create_layer_handler()">增加图层</button>
+            <form action="" id="layerInfoForm">
+                <ul id="layerInfoBarList">
+                    <li class="layerInfoBar">
+                        <p>图层1</p><select><option value="1">仓库1</option></select>
+                        <div>x:<input type="number" name="x" value="10" /></div>
+                        <div>y:<input type="number" name="y" value="10" /></div>
+                        <div>width:<input type="number" name="w" value="10" /></div>
+                        <div>heigh:<input type="number" name="h" value="10"></div>
+                        <div>img_idx:<input type="number" name="img_idx" value="0"></div>
+                        <button onclick="click_remove_layer_handler(this)"></button>
+                    </li>               
+                </ul> 
+            </form>         
         </div>
+        <button onclick="click_create_layer_handler()">增加图层</button>
         <div>
             <button onclick="upload_web_data_to_server()">上传生成表盘</button>
         </div>
         <div class="OS_res rightDown">OS_res</div>
-        <div class="sda">asdsad</div>
+        <div class="sda">asdsad</div>        
     </div>
     
 
@@ -89,6 +89,7 @@
     <script type="text/javascript" src="js/drawbmp.js"></script>    
     <script type="text/javascript" src="js/upload_img.js"></script>
     <script type="text/javascript" src="js/create_layer.js"></script>
+    <script type="text/javascript" src="js/upload_to_server.js"></script>
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <!-- <script type="text/javascript" src="js/local_time_clock.js"></script> -->

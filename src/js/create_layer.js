@@ -41,7 +41,9 @@
 
         //填充select选项内容
         for(var name of imgBoxNameArray){
-            select.options.add(new Option(name));
+            var newOption = new Option(name);
+            newOption.setAttribute("value", name);
+            select.options.add(newOption);
         }
 
         //添加节点的xywh
@@ -74,7 +76,9 @@
 
                     //填充select选项内容
                     for(var name of imgBoxNameArray){
-                        cld.options.add(new Option(name));
+                        var newOption = new Option(name);
+                        newOption.setAttribute("value", name);
+                        cld.options.add(newOption);
                     }
                 }
             }

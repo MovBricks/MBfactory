@@ -9,8 +9,17 @@ function fail(code) {
     alert('请求失败:' + code);
 }
 
-var url = "http://";
+var url = "http://192.168.0.107:8080";
+//上传数据对象
+var fileDate = new FormData();
 
+function get_imgdata_to_filedata(){
+
+    for(var i = imgDataObjArray.length-1;i>=0;i--){
+        var fileName = "box"+imgDataObjArray[i].box+"idx"+imgDataObjArray[i].idx;
+        fileDate.append(fileName,imgDataObjArray[i].file);
+    }
+}
 
 function upload_web_data_to_server() {
 
@@ -38,7 +47,21 @@ function upload_web_data_to_server() {
 
     // 发送请求:
     request.open('POST', url);
-    request.send(date);
+    
+
+    // 获取页面已有的一个form表单
+    var layerInfoForm = document.getElementById('layerInfoForm');
+    // 用表单来初始化FormData
+    var formData = new FormData(layerInfoForm);
+    //发送
+    request.send(formData);
+    
+    
+    //从图片数据数组中获取数据填充FormData
+    get_imgdata_to_filedata();
+    //发送图片文件
+    request.send(fileDate);
+
 
     alert('请求已发送，请等待响应...');
 }
