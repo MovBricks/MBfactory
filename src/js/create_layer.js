@@ -2,7 +2,7 @@
     //删除图层
     function click_remove_layer_handler(Obj){
         console.log('click_remove_layer_handler');
-
+        
         //删除节点
         var parObj = Obj.parentNode.parentNode;
         parObj.removeChild(Obj.parentNode);
