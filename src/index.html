@@ -28,9 +28,16 @@
                 </ul>
             </div>
         </div>
-        <div class="real_wathch leftDown">
-            <img src="img/real_watch.png" alt="MaibuWatch" width="100%" draggable="false"/>
+        <div class="real_wathch">
+            <img id="realWatchImg" src="img/real_watch_blue.png" alt="MaibuWatch" width="100%" draggable="false"/>
             <canvas id="watchCanvas" width="128" height="128"></canvas>
+        </div>
+        <div class="leftDown" id="changeWatch" >
+            <span>更换表带</span>
+            <select onchange="select_change_watch(this)">
+                <option value="blue">蓝色</option>
+                <option value="red">红色</option>
+            </select>
         </div>
     </div>
     <div class="middle pull-left">
@@ -90,9 +97,10 @@
     <script type="text/javascript" src="js/upload_img.js"></script>
     <script type="text/javascript" src="js/create_layer.js"></script>
     <script type="text/javascript" src="js/upload_to_server.js"></script>
+    <script type="text/javascript" src="js/change_watch.js"></script>
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <!-- <script type="text/javascript" src="js/local_time_clock.js"></script> -->
+    <!--<script type="text/javascript" src="js/local_time_clock.js"></script> -->
 
     
 
