@@ -11,6 +11,10 @@ html {
     color: #222;
 }
 
+body{
+  background: rgb(239, 239, 239);
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -157,10 +161,11 @@ p {
 	width: 39%;
 }
 
-.storehouse .up_img_btn_box{
+/*.storehouse .up_img_btn_box{
   display: flex;
-  flex-direction:row-reverse;
-}
+  justify-content:center; 
+}*/
+
 .storehouse .up_img_btn_box input[type="file"]{
   display: none;
 }
@@ -169,14 +174,19 @@ p {
   border: 0;
   margin: 0;
   padding: 0; 
-  width: 5rem;
+  width: 100%;
   height: 5rem; 
-  background: url('../img/img_plus.gif') no-repeat center;
-  background-size: cover;
+  background: rgb(83, 178, 234) url('../img/img_plus.ico') no-repeat center;
+  background-size: contain;
+
+  border:2px solid rgb(210, 210, 210);
+  border-top: 0px;
+  border-radius: 0 0 8px 8px;
+  -moz-border-radius:0 0 8px 8px; /* 老的 Firefox */
 }
 
 .storehouse .previewContainer{
-  width: 100%;
+  width: 99%;
   height: 300px;
   max-height: 300px;
   overflow: auto;
@@ -185,6 +195,10 @@ p {
   display: -webkit-flex; /* Safari */
   flex-wrap: wrap;  
   align-items: flex-start;
+  background: #FFF;
+
+  border:2px solid rgb(210, 210, 210); 
+  border-top: 0; 
 }
 .storehouse .previewContainer .previewTray{
   border: 1px solid blue;
@@ -196,11 +210,12 @@ p {
 
 #imgBoxAndboxName .boxNameBar{
   margin:1rem 0 0 1rem; 
-  background-color: #aaa;
+  background-color: rgb(246, 244, 245);
   width: auto;
   max-height: 95px;
   overflow: auto; 
 
+  border:2px solid rgb(210, 210, 210);  
 }
 
 #imgBoxAndboxName .boxNameBar #boxNameBarList{
@@ -214,7 +229,8 @@ p {
 
 #imgBoxAndboxName .boxNameBar li{
 
-  border: 2px solid #C71585;
+  border: 2px solid rgb(60, 117, 255);
+  border-radius:4px;
   display: inline-flex;
   display: -webkit-inline-flex; /* Safari */
   
@@ -239,7 +255,7 @@ p {
 }
 
 #imgBoxAndboxName .boxNameBar .boxNameStringSelect{
-  background-color: lightcoral;
+  background-color: rgb(81, 179, 252);
 }
 
 #imgBoxAndboxName .boxNameBar .addImgBoxBtn{
@@ -259,8 +275,7 @@ p {
 
 #imgBoxAndboxName .imgBox{
   width: auto; 
-  border:2px solid #C71585;
-  border-top: 0px;
+
   margin-left: 1rem;
 
   display: flex;
