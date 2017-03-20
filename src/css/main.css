@@ -291,6 +291,10 @@ p {
   padding-bottom:10px;
 }
 
+.layerInfoBar p:hover{
+  cursor:pointer;
+}
+
 .layerInfoBar input{
   width: 40px;
   /*margin-right: 10px;*/

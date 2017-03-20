@@ -1,4 +1,25 @@
     'use strict'
+
+    //将图层置顶
+    function click_top_layer(Obj){
+        var lastNameStr = Obj.innerHTML;
+        var nameIdx = parseInt(lastNameStr.replace(/\D/g,""))-1;
+
+        var obj_layer_idx;
+        var maxz = 0;
+        for(var i = layers.length-1;i>=0;i--){
+            if(layers[i].z > maxz){
+                maxz = layers[i].z
+            }
+
+            if(layers[i].layer_idx === nameIdx){
+                obj_layer_idx = i;
+            }
+        }
+        
+        layers[obj_layer_idx].z = maxz+1;
+    }
+
     //删除图层
     function click_remove_layer_handler(Obj){
         console.log('click_remove_layer_handler');
@@ -26,6 +47,7 @@
 
         //添加节点的名称
         var layerInfoBarNewItemName = document.createElement("p");
+        layerInfoBarNewItemName.setAttribute("onclick", "click_top_layer(this)"); //设置class属性 
         
         var lastNameStr = layerInfoBarList.children[layerInfoBarList.children.length-1].children[0].innerHTML;                
         var nameIdx = parseInt(lastNameStr.replace(/\D/g,""))+1;
@@ -57,6 +79,10 @@
                
     
         layerInfoBarList.appendChild(layerInfoBarNewItem); 
+        
+        //刷新layers数组
+        getLayerInfoFromInputToCanvas();
+        drawPains();
        
     }
 
