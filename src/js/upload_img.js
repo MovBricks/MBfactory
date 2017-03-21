@@ -129,7 +129,7 @@
 
         var nameLength = boxNameBarList.children.length-2;
 
-        imgBoxNewItem.innerHTML = '<div class="previewContainer" name="'+nameLength+'"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()"></button></div></div>'; //设置节点内容
+        imgBoxNewItem.innerHTML = '<div class="previewContainer" name="'+nameLength+'"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()">导入图片</button></div></div>'; //设置节点内容
 
         imgAllBoxs.appendChild(imgBoxNewItem); //添加仓库内容节点        
     }

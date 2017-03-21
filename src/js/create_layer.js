@@ -75,7 +75,7 @@
                     <div>width:<input type="number" name="w" value="10" /></div>
                     <div>heigh:<input type="number" name="h" value="10"></div>
                     <div>img_idx:<input type="number" name="img_idx" value="0"></div>
-                    <button onclick="click_remove_layer_handler(this)"></button>`; //设置文字内容
+                    <button onclick="click_remove_layer_handler(this)">删除图层</button>`; //设置文字内容
                
     
         layerInfoBarList.appendChild(layerInfoBarNewItem); 

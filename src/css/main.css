@@ -27,6 +27,9 @@ p {
   margin: 0;
 }
 
+a{
+  text-decoration: none;
+}
 /* ==========
    工具样式
    ========== */
@@ -98,6 +101,7 @@ p {
    padding:0;    
    width:100%; 
    color:#FFF;
+   cursor: default;
 }
 
 
@@ -128,6 +132,65 @@ p {
    自定义页面样式
    =============== */
 
+#nav-contain nav {
+  background-color: #222;
+  height: 75px;
+  position: relative; 
+  border-bottom: 3px solid rgb(0, 102, 157);
+  margin-bottom: 4px;
+}
+
+#back-index {   
+  display: inline-block; 
+  position: absolute;
+  top:10px;
+  left: 5.5%;  
+}
+
+#back-index img{
+   height: 50px;
+   width: 160px;   
+}
+
+#maibuFactory{
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 6rem;
+  font-family: Arial, Helvetica, sans-serif, monospace;
+  position: absolute;
+  color: #2ab6cc;
+  cursor:default;
+  padding-top: 0px;
+}
+
+#nav-btns{
+  display: inline-block; 
+  position: absolute;
+  top:30px;
+  left: 85%;
+
+}
+
+#nav-btns > .nav-btn {
+  list-style: none;
+  display: inline-block;
+}
+
+
+li.nav-btn > a {
+  font-size: 2.25rem;
+  line-height: 0px;
+  color: #2ab6cc; }
+
+li.nav-btn > a.current-index,
+li.menu-btn > a.current-index {
+  color: #fff; }
+
+li.nav-btn > a:hover, li.nav-btn > a:focus {
+  color: #fff; }
+
+
 .left{
 	width: 20%;
 }
@@ -151,10 +214,36 @@ p {
 
 }
 
+#changeWatch {
+    width: auto;
+    height: 34px;
+    overflow: hidden;
+    background: #ddd;
+}
+
+#changeWatch select {   
+    background: url("../img/select_arrow.jpg") no-repeat right rgb(239, 239, 239) ;   
+    width: 100%;   
+    padding: 5px;   
+    font-size: 16px;       
+    border: 2px solid rgb(210, 210, 210);   
+    height: 34px;   
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; 
+}
+
 .middle{
 	width: 40%;
 }
-
+.watchpainter{
+  margin: 0 10px;
+  border: 2px solid rgb(210, 210, 210); 
+}
 
 
 .right{
@@ -170,14 +259,17 @@ p {
   display: none;
 }
 
+.createLayer button,
 .storehouse .up_img_btn_box button{
   border: 0;
   margin: 0;
   padding: 0; 
   width: 100%;
   height: 5rem; 
-  background: rgb(83, 178, 234) url('../img/img_plus.ico') no-repeat center;
-  background-size: contain;
+  background: rgb(83, 178, 234);
+  font-weight: bold;
+  font-family: "YouYuan","Microsoft YaHei",微软雅黑,"MicrosoftJhengHei";
+  font-size: 2.5rem;
 
   border:2px solid rgb(210, 210, 210);
   border-top: 0px;
@@ -186,7 +278,7 @@ p {
 }
 
 .storehouse .previewContainer{
-  width: 99%;
+  width: auto;
   height: 300px;
   max-height: 300px;
   overflow: auto;
@@ -201,7 +293,7 @@ p {
   border-top: 0; 
 }
 .storehouse .previewContainer .previewTray{
-  border: 1px solid blue;
+  border: 1px solid rgb(0, 202, 176);
   margin: 4px 4px 0 0;
   
   max-width: 30%;
@@ -219,7 +311,7 @@ p {
 }
 
 #imgBoxAndboxName .boxNameBar #boxNameBarList{
-  
+  padding: 3px;
   display: flex;
   display: -webkit-flex; /* Safari */
   flex-wrap: wrap;    
@@ -229,7 +321,7 @@ p {
 
 #imgBoxAndboxName .boxNameBar li{
 
-  border: 2px solid rgb(60, 117, 255);
+  border: 2px solid rgb(0, 102, 157);
   border-radius:4px;
   display: inline-flex;
   display: -webkit-inline-flex; /* Safari */
@@ -239,7 +331,7 @@ p {
   /*margin-right: 1x0p;*/
   padding: 2px;
   padding-right: 0;
-  width: 45px;
+  width: 50px;
   border-bottom: 0px;
   cursor: default;
 }
@@ -261,15 +353,21 @@ p {
 #imgBoxAndboxName .boxNameBar .addImgBoxBtn{
   padding: 0;  
   width: 25px;
-  height: 25px;   
-  background: url('../img/img_plus.gif') no-repeat center;
+  height: 24px;   
+  background: url('../img/img_plus.png') no-repeat center;
   background-size: cover;
+
+  border-radius:4px;
 }
 
 #imgBoxAndboxName .boxNameBar li button{
-  padding: 0;  
+  padding: 0;
+
   width: 20px;
-  background: url('../img/close_icon.gif') no-repeat center;
+  border: solid rgb(210, 210, 210); 
+  border-width: 0;
+  border-radius:0 4px 4px 0;
+  background: url('../img/close_icon.png') no-repeat center ;
   background-size: cover;
 }
 
@@ -286,40 +384,72 @@ p {
 }
 
 .rightMiddle{
-  width: 100%;
-  max-height: 200px;
+  width: auto;
+  max-height: 230px;
   overflow:auto;
 
 }
 
 .addLayer{
-  margin-left: 1rem;
-  padding-top: 10px; 
+  margin: 10px 0 0 1rem;
+  /*padding: 10px 0 0 1rem;  */
+  
+  border:2px solid rgb(210, 210, 210); 
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;  
+
+  background-color: rgb(0, 202, 176);
 }
+
 
 .layerInfoBar{
   display: flex;
   display: -webkit-flex; /* Safari */
+  flex-direction:column;
   flex-wrap: wrap;  
   align-items: center;
-  align-content:space-around;
-  padding-bottom:10px;
+  align-content:space-around;  
+  justify-content: center;
+  height: 55px;
+  padding:5px 0 5px 1rem;
+  border-bottom: 2px solid rgb(217,217,217);
+  font:bold 1.5rem 'BebasNeueRegular', Arial, Helvetica, sans-serif; 
 }
 
+.layerInfoBar p{
+  font: bold 2rem "YouYuan","Microsoft YaHei",微软雅黑,"MicrosoftJhengHei";
+  margin-bottom: 5px;
+}
 .layerInfoBar p:hover{
   cursor:pointer;
 }
 
+.layerInfoBar select{
+  height: 22px;
+  font-size: 1rem;
+}
+
 .layerInfoBar input{
-  width: 40px;
+  width: 50px;
+  margin-bottom: 2px;
+  
   /*margin-right: 10px;*/
 }
 
 .layerInfoBar button{
-  padding: 0;
-  margin-left: 10px;  
-  width: 20px;
-  height: 20px;
-  background: url('../img/close_icon.gif') no-repeat center;
+  padding: 10px;  
+  width: auto;  
+  background: rgb(248, 110, 92);
   background-size: cover;
+
+  border: solid rgb(210, 210, 210); 
+  border-width: 2px;
+  border-radius:4px;
+
+}
+
+
+.createLayer{
+  margin-left: 1rem; 
 }
