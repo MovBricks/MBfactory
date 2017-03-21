@@ -102,17 +102,41 @@ a{
    width:100%; 
    color:#FFF;
    cursor: default;
+   padding-top: 10px;
 }
 
+#Date {
+  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  text-shadow: 0 0 5px #00c6ff;
+}
 
-#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:2rem; text-align:center; text-shadow:0 0 5px #00c6ff; }
+.clock ul {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px;
+  list-style: none;
+  text-align: center;
+}
 
-.clock ul { width:100%; margin:0 auto; padding:0px; list-style:none; text-align:center; }
-.clock ul li { display:inline; font-size:5rem; text-align:center; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 5px #00c6ff; }
+.clock ul li {
+  display: inline;
+  font-size: 5rem;
+  text-align: center;
+  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+  text-shadow: 0 0 5px #00c6ff;
+}
 
-#point { position:relative; -moz-animation:mymove 1s ease infinite; -webkit-animation:mymove 1s ease infinite; padding-left:10px; padding-right:10px; }
+#point {
+  position: relative;
+  -moz-animation: mymove 1s ease infinite;
+  -webkit-animation: mymove 1s ease infinite;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
-@-webkit-keyframes mymove 
+/*@-webkit-keyframes mymove 
 {
 0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
 50% {opacity:0; text-shadow:none; }
@@ -125,7 +149,7 @@ a{
 0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
 50% {opacity:0; text-shadow:none; }
 100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }  
-}
+}*/
 
 
 /* ===============
@@ -144,7 +168,7 @@ a{
   display: inline-block; 
   position: absolute;
   top:10px;
-  left: 5.5%;  
+  left: 4%;  
 }
 
 #back-index img{
@@ -233,7 +257,7 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
     -webkit-appearance:none;
 
     -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
+    
     border-radius: 4px; 
 }
 
@@ -279,7 +303,7 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
 
 .storehouse .previewContainer{
   width: auto;
-  height: 300px;
+  height: 200px;
   max-height: 300px;
   overflow: auto;
   padding-left: 1px;
@@ -301,13 +325,15 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
 }
 
 #imgBoxAndboxName .boxNameBar{
-  margin:1rem 0 0 1rem; 
+  margin:1rem 0 0 0; 
   background-color: rgb(246, 244, 245);
   width: auto;
   max-height: 95px;
   overflow: auto; 
 
-  border:2px solid rgb(210, 210, 210);  
+  border:2px solid rgb(210, 210, 210); 
+  border-radius: 4px 4px 0 0;
+  -moz-border-radius:4px 4px 0 0; 
 }
 
 #imgBoxAndboxName .boxNameBar #boxNameBarList{
@@ -317,12 +343,14 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   flex-wrap: wrap;    
   align-content:flex-start;
   margin-bottom:  -4px;
+  
 }
 
 #imgBoxAndboxName .boxNameBar li{
 
   border: 2px solid rgb(0, 102, 157);
   border-radius:4px;
+  -moz-border-radius:4px;
   display: inline-flex;
   display: -webkit-inline-flex; /* Safari */
   
@@ -358,6 +386,7 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   background-size: cover;
 
   border-radius:4px;
+  -moz-border-radius:4px;
 }
 
 #imgBoxAndboxName .boxNameBar li button{
@@ -367,14 +396,13 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   border: solid rgb(210, 210, 210); 
   border-width: 0;
   border-radius:0 4px 4px 0;
+  -moz-border-radius:0 4px 4px 0;
   background: url('../img/close_icon.png') no-repeat center ;
   background-size: cover;
 }
 
 #imgBoxAndboxName .imgBox{
   width: auto; 
-
-  margin-left: 1rem;
 
   display: flex;
   display: -webkit-flex; /* Safari */
@@ -391,13 +419,12 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
 }
 
 .addLayer{
-  margin: 10px 0 0 1rem;
-  /*padding: 10px 0 0 1rem;  */
+  margin: 10px 0 0 0;
   
   border:2px solid rgb(210, 210, 210); 
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;  
+  -moz-border-radius: 8px 8px 0 0;
+  
+  border-radius: 8px 8px 0 0;
 
   background-color: rgb(0, 202, 176);
 }
@@ -445,11 +472,8 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
 
   border: solid rgb(210, 210, 210); 
   border-width: 2px;
-  border-radius:4px;
+  border-radius: 4px;
 
 }
 
 
-.createLayer{
-  margin-left: 1rem; 
-}
