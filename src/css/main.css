@@ -283,6 +283,7 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   display: none;
 }
 
+.createControler button,
 .createLayer button,
 .storehouse .up_img_btn_box button{
   border: 0;
@@ -410,14 +411,13 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   align-items: flex-start;
   align-content:space-around;
 }
-
+.rightDown,
 .rightMiddle{
   width: auto;
   max-height: 230px;
   overflow:auto;
-
 }
-
+.OS_res,
 .addLayer{
   margin: 10px 0 0 0;
   
@@ -429,7 +429,7 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   background-color: rgb(0, 202, 176);
 }
 
-
+.controlerInfoBar,
 .layerInfoBar{
   display: flex;
   display: -webkit-flex; /* Safari */
@@ -444,14 +444,17 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   font:bold 1.5rem 'BebasNeueRegular', Arial, Helvetica, sans-serif; 
 }
 
+.controlerInfoBar p,
 .layerInfoBar p{
   font: bold 2rem "YouYuan","Microsoft YaHei",微软雅黑,"MicrosoftJhengHei";
   margin-bottom: 5px;
 }
+
 .layerInfoBar p:hover{
   cursor:pointer;
 }
 
+.controlerInfoBar select,
 .layerInfoBar select{
   height: 22px;
   font-size: 1rem;
@@ -464,6 +467,7 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   /*margin-right: 10px;*/
 }
 
+.controlerInfoBar button,
 .layerInfoBar button{
   padding: 10px;  
   width: auto;  
@@ -475,5 +479,7 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   border-radius: 4px;
 
 }
-
+.controlerInfoBar select{
+  width: 65px;
+}
 

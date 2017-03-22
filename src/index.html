@@ -101,7 +101,36 @@
         <div class="createLayer">
             <button onclick="click_create_layer_handler()">增加图层</button>
         </div>        
-        <div class="OS_res rightDown">OS_res</div>
+        <div class="OS_res rightDown">
+            <ul id="controlerInfoBarList">
+                <li class="controlerInfoBar">
+                    <p>被控图层</p>
+                    <select name="selectLayer">
+                        <option value="1">图层1</option>
+                    </select>
+                    <p>控件</p>
+                    <select>
+                        <option value="step">步数</option>
+                        <option value="temp">温度</option>
+                        <option value="dist">距离</option>                        
+                        <option value="time">时间</option>
+                    </select>
+                    <p>控件参数</p>
+                    <select name="controlerParam">
+                        <option value="1">个位</option>
+                        <option value="2">十位</option>
+                        <option value="3">百位</option>
+                        <option value="4">千位</option>
+                        <option value="5">万位</option>
+                        <option value="6">十万位</option>
+                    </select>
+                    <button onclick="click_remove_layer_handler(this)">删除控件</button>
+                </li>
+            </ul>
+            <div class="createControler">
+                <button onclick="click_add_controler_handler(this)">增加控件</button>
+            </div>
+        </div>
               
     </div>
     
@@ -112,8 +141,9 @@
     <script type="text/javascript" src="js/create_layer.js"></script>
     <script type="text/javascript" src="js/upload_to_server.js"></script>
     <script type="text/javascript" src="js/change_watch.js"></script>
-    
-    <script type="text/javascript" src="js/local_time_clock.js"></script> 
+    <script type="text/javascript" src="js/create_controler.js"></script>
+
+    <!--<script type="text/javascript" src="js/local_time_clock.js"></script> -->
 
     
 

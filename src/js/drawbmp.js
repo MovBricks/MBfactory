@@ -241,20 +241,32 @@
     }
 
    
+ //初始化-订阅事件
+ function drawbmp_oneInfoBar_listener_callback(){
+     getLayerInfoFromInputToCanvas();  
+    drawPains();
+ }
 
     function reListenAllInput() {
        
         for (var oneInfoBar of layerInfoBarList.children) {
             //input数值改变
-            oneInfoBar.addEventListener('change',function(){ 
-                getLayerInfoFromInputToCanvas();  
-                drawPains();
-            });   
+            oneInfoBar.addEventListener('change',drawbmp_oneInfoBar_listener_callback());   
         }
     }
 
 
-    //初始化-订阅事件
+   
+
+    function drawbmp_listener_callback(){
+
+            console.log('lastChild click!!!!!');
+            getLayerInfoFromInputToCanvas();
+            reListenAllInput();
+            drawPains();
+    }
+
+
     var init = function (){
         
         //载入初始图层数据并绘图
@@ -265,12 +277,7 @@
         reListenAllInput();
         
         //增加图层 按键被按
-        layerInfoBarList.parentElement.lastElementChild.addEventListener('click',function(){
-            console.log('lastChild click!!!!!');
-            getLayerInfoFromInputToCanvas();
-            reListenAllInput();
-            drawPains();
-        });        
+        layerInfoBarList.parentElement.lastElementChild.addEventListener('click',drawbmp_listener_callback());        
        
         
         painter_canvas.onmouseup = stopDragging;
@@ -282,19 +289,11 @@
 
     var exit = function (){        
         
-        layerInfoBarList.parentElement.lastElementChild.removeEventListener('click',function(){
-            console.log('lastChild click!!!!!');
-            getLayerInfoFromInputToCanvas();
-            reListenAllInput();
-            drawPains();
-        });   
+        layerInfoBarList.parentElement.lastElementChild.removeEventListener('click',drawbmp_listener_callback());   
 
         for (var oneInfoBar of layerInfoBarList.children) {
             //input数值改变
-            oneInfoBar.removeEventListener('change',function(){ 
-                getLayerInfoFromInputToCanvas();  
-                drawPains();
-            });   
+            oneInfoBar.removeEventListener('change',drawbmp_oneInfoBar_listener_callback());   
         }
     };
 

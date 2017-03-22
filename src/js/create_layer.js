@@ -87,7 +87,7 @@
     }
 
     //修改图层选项内容
-    function change_select_option(){
+    function change_layer_select_option(){
         console.log('select change');
         var layerInfoBarList = document.getElementById('layerInfoBarList');
 
@@ -112,22 +112,20 @@
     }
 
     //初始化-订阅事件
+    function create_layer_listener_callback(){
+        console.log('imgBoxAndboxNameBoxNameBar DOMSubtreeModified!!!!!');
+        change_layer_select_option();
+    }
     var init = function (){
         
         var BoxNameBar = document.getElementById('imgBoxAndboxNameBoxNameBar');
-        BoxNameBar.addEventListener('DOMSubtreeModified',function(){
-            console.log('imgBoxAndboxNameBoxNameBar DOMSubtreeModified!!!!!');
-            change_select_option();
-        });       
+        BoxNameBar.addEventListener('DOMSubtreeModified',create_layer_listener_callback());       
     };
 
     var exit = function (){
         
         var BoxNameBar = document.getElementById('imgBoxAndboxNameBoxNameBar');
-        BoxNameBar.removeEventListener('DOMSubtreeModified',function(){
-            console.log('imgBoxAndboxNameBoxNameBar DOMSubtreeModified!!!!!');
-            change_select_option();
-        });       
+        BoxNameBar.removeEventListener('DOMSubtreeModified',create_layer_listener_callback());       
     };
 
     (function () {

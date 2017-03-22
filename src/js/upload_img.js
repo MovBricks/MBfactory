@@ -187,6 +187,10 @@
     }
 
     //初始化订阅事件
+    function upload_img_listener_callback(){
+        up_img_preview_handler(document.getElementById('upload_img_btn'));
+    }
+
     var init = function (){       
         
 
@@ -198,18 +202,14 @@
         //订阅事件-图片上传
         var fileInput = document.getElementById('upload_img_btn');
 
-        fileInput.addEventListener('change', function () {
-            up_img_preview_handler(document.getElementById('upload_img_btn'));
-        });
+        fileInput.addEventListener('change',upload_img_listener_callback());
     };
 
     var exit = function (){
             
         var fileInput = document.getElementById('upload_img_btn');
 
-        fileInput.removeEventListener('change', function () {
-            up_img_preview_handler(document.getElementById('upload_img_btn'));
-        });  
+        fileInput.removeEventListener('change',upload_img_listener_callback());  
     };
 
     (function () {
