@@ -198,18 +198,17 @@
             document.getElementById('boxNameBarList').children[0].children[0].innerHTML
         );
 
-
         //订阅事件-图片上传
         var fileInput = document.getElementById('upload_img_btn');
 
-        fileInput.addEventListener('change',upload_img_listener_callback());
+        fileInput.addEventListener('change',upload_img_listener_callback);
     };
 
     var exit = function (){
             
         var fileInput = document.getElementById('upload_img_btn');
 
-        fileInput.removeEventListener('change',upload_img_listener_callback());  
+        fileInput.removeEventListener('change',upload_img_listener_callback);  
     };
 
     (function () {

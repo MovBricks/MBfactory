@@ -18,6 +18,7 @@
         }
         
         layers[obj_layer_idx].z = maxz+1;
+        drawPains();
     }
 
     //删除图层
@@ -31,7 +32,8 @@
         //刷新layers数组
         getLayerInfoFromInputToCanvas();
         drawPains();
-
+        //在layers更新后，更新控件
+        change_controler_select_option()  
     }
     
     //增加图层
@@ -83,6 +85,9 @@
         //刷新layers数组
         getLayerInfoFromInputToCanvas();
         drawPains();
+
+        //在layers更新后，更新控件
+        change_controler_select_option()       
        
     }
 
@@ -119,13 +124,13 @@
     var init = function (){
         
         var BoxNameBar = document.getElementById('imgBoxAndboxNameBoxNameBar');
-        BoxNameBar.addEventListener('DOMSubtreeModified',create_layer_listener_callback());       
+        BoxNameBar.addEventListener('DOMSubtreeModified',create_layer_listener_callback);       
     };
 
     var exit = function (){
         
         var BoxNameBar = document.getElementById('imgBoxAndboxNameBoxNameBar');
-        BoxNameBar.removeEventListener('DOMSubtreeModified',create_layer_listener_callback());       
+        BoxNameBar.removeEventListener('DOMSubtreeModified',create_layer_listener_callback);       
     };
 
     (function () {

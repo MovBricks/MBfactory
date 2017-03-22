@@ -14,6 +14,7 @@ function click_add_controler_handler(Obj){
 
     //添加节点的select
     var controlerInfoBarNewItemSelect = document.createElement("select");  
+    controlerInfoBarNewItemSelect.setAttribute("class", "selectLayer"); //设置class属性     
     var select = controlerInfoBarNewItem.appendChild(controlerInfoBarNewItemSelect); 
 
     //填充select选项内容
@@ -33,7 +34,7 @@ function click_add_controler_handler(Obj){
             <option value="time">时间</option>
         </select>
         <p>控件参数</p>
-        <select name="controlerParam">
+        <select class="controlerParam">
             <option value="1">个位</option>
             <option value="2">十位</option>
             <option value="3">百位</option>
@@ -50,30 +51,43 @@ function click_add_controler_handler(Obj){
 }
 
 function change_controler_select_option(){
+    
+    var controlerInfoBarList = document.getElementById("controlerInfoBarList");
+    var selectLayer = controlerInfoBarList.getElementsByClassName("selectLayer");
+    
+    for(var select of selectLayer){
+        select.innerHTML = "";
 
-}
+        //填充select选项内容
+        for(var name of layers){
+            var newOption = new Option("图层"+(name.layer_idx+1));
+            newOption.setAttribute("value", name.layer_idx);
+            select.options.add(newOption);
+        }
+    }
+}   
 
-//初始化-订阅事件
+// //初始化-订阅事件
 
-function create_controler_listener_callback(){
-    console.log('controlerInfoBarList DOMSubtreeModified!!!!!');
-    change_controler_select_option();
-}
+// function create_controler_listener_callback(){
+//     console.log('layerInfoBarList DOMSubtreeModified!!!!!');
+//     change_controler_select_option();
+// }
 
 
-    var init = function (){
+//     var init = function (){
         
-        var controlerInfoBarList = document.getElementById('controlerInfoBarList');
-        controlerInfoBarList.addEventListener('DOMSubtreeModified',create_controler_listener_callback());       
-    };
+//         var layerInfoBarList = document.getElementById('layerInfoBarList');
+//         layerInfoBarList.addEventListener('DOMSubtreeModified',create_controler_listener_callback);       
+//     };
 
-    var exit = function (){
+//     var exit = function (){
         
-        var controlerInfoBarList = document.getElementById('controlerInfoBarList');
-        controlerInfoBarList.removeEventListener('DOMSubtreeModified',create_controler_listener_callback());       
-    };
+//         var layerInfoBarList = document.getElementById('layerInfoBarList');
+//         layerInfoBarList.removeEventListener('DOMSubtreeModified',create_controler_listener_callback);       
+//     };
 
-    (function () {
-        startList.push(init);
-        exitList.push(exit);
-    })();
+//     (function () {
+//         startList.push(init);
+//         exitList.push(exit);
+//     })();

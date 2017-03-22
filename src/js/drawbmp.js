@@ -35,13 +35,31 @@
     //图层列表
     var layerInfoBarList = document.getElementById('layerInfoBarList');
 
+    function find_DOM_children_idx(idx){
+        
+        var layerNames = layerInfoBarList.getElementsByTagName("p");
+        var str = "图层"+(idx+1);
+        for(var i = layerNames.length-1;i>=0;i--){
+            if(layerNames[i].innerHTML === str){
+                return i;
+            }
+        }
+    
+        return -1;
+    }
+
     //canvas->input
     function getLayerInfoFromCanvasToInput (){
 
         for (var i = 0; i<layerInfoBarList.children.length;i++) {          
             
             var oneLayer = layers[i];
-            var inputInfoAll = layerInfoBarList.children[layers[i].layer_idx].getElementsByTagName("input");
+
+            var cldIdx = find_DOM_children_idx(layers[i].layer_idx);
+            if(cldIdx === -1){
+                continue;
+            }
+            var inputInfoAll = layerInfoBarList.children[cldIdx].getElementsByTagName("input");
             
 
             for (var j = 0; j < inputInfoAll.length; j++) {
@@ -61,6 +79,7 @@
                 return idx;
             }
         }
+        return infoBarIdx;
     }
 
     //input->canvas
@@ -71,15 +90,18 @@
         for (var j = 0; j<layerInfoBarList.children.length;j++) {
 
             var oneInfoBar = layerInfoBarList.children[j];
-            var old_layer_idx = find_old_layer_idx(j);
 
-            var oneLayer = new layerInfo(10, 10, 10, 10,j);
+            var nameIdx = parseInt(oneInfoBar.children[0].innerHTML.replace(/\D/g,""))-1;
+            var oneLayer = new layerInfo(10, 10, 10, 10,nameIdx);
+
+            //是否已存在相同layer_idx,返回该数组序号
+            var old_layer_idx = find_old_layer_idx(nameIdx);            
             
             if(layers[old_layer_idx] !== undefined){
                 oneLayer.img_idx = layers[old_layer_idx].img_idx;
-                oneLayer.layer_idx = layers[old_layer_idx].layer_idx;
                 oneLayer.z = layers[old_layer_idx].z;
             }
+            
 
 
             var input_num_lmt_flag  = 0;//限制输入数字
@@ -124,18 +146,21 @@
 
         for (var i = 0; i<layerInfoBarList.children.length;i++) {
 
-            var oneInfoBar = layerInfoBarList.children[layers[i].layer_idx];
+            var oneInfoBar = layerInfoBarList.children[i];
 
-            var x = layers[i].x;
-            var y = layers[i].y;
-            var w = layers[i].w;
-            var h = layers[i].h;
+            var nameIdx = parseInt(oneInfoBar.children[0].innerHTML.replace(/\D/g,""))-1;
+            var idx = find_old_layer_idx(nameIdx);
+            
+            var x = layers[idx].x;
+            var y = layers[idx].y;
+            var w = layers[idx].w;
+            var h = layers[idx].h;
             
             //绘制图片
             
             var previewContainer = document.getElementsByClassName('previewContainer');
             var box_idx = oneInfoBar.children[1].selectedIndex;
-            var imgData = previewContainer[box_idx].children[layers[i].img_idx];
+            var imgData = previewContainer[box_idx].children[layers[idx].img_idx];
             if(imgData !== undefined){
                 var image = new Image();
                 image.src = imgData.currentSrc;
@@ -144,8 +169,9 @@
 
 
             //绘制图层矩形
-            var pattLayerNameString = new RegExp("\\d+");
-            var layerNameString = pattLayerNameString.exec(oneInfoBar.children[0].innerHTML);
+            
+            // var pattLayerNameString = new RegExp("\\d+");
+            // var layerNameString = pattLayerNameString.exec(oneInfoBar.children[0].innerHTML);
             
 
             painter_ctx.beginPath();
@@ -159,7 +185,7 @@
             painter_ctx.font = '12px Arial';
             painter_ctx.fillStyle = '#620000';
 
-            painter_ctx.fillText(layerNameString, x, y + painter_ctx.lineWidth);
+            painter_ctx.fillText(nameIdx+1, x, y + painter_ctx.lineWidth);
 
             
         }
@@ -251,7 +277,7 @@
        
         for (var oneInfoBar of layerInfoBarList.children) {
             //input数值改变
-            oneInfoBar.addEventListener('change',drawbmp_oneInfoBar_listener_callback());   
+            oneInfoBar.addEventListener('change',drawbmp_oneInfoBar_listener_callback);   
         }
     }
 
@@ -261,9 +287,9 @@
     function drawbmp_listener_callback(){
 
             console.log('lastChild click!!!!!');
-            getLayerInfoFromInputToCanvas();
+            //getLayerInfoFromInputToCanvas();
             reListenAllInput();
-            drawPains();
+            //drawPains();
     }
 
 
@@ -277,7 +303,7 @@
         reListenAllInput();
         
         //增加图层 按键被按
-        layerInfoBarList.parentElement.lastElementChild.addEventListener('click',drawbmp_listener_callback());        
+        layerInfoBarList.parentElement.lastElementChild.addEventListener('click',drawbmp_listener_callback);        
        
         
         painter_canvas.onmouseup = stopDragging;
@@ -289,11 +315,11 @@
 
     var exit = function (){        
         
-        layerInfoBarList.parentElement.lastElementChild.removeEventListener('click',drawbmp_listener_callback());   
+        layerInfoBarList.parentElement.lastElementChild.removeEventListener('click',drawbmp_listener_callback);   
 
         for (var oneInfoBar of layerInfoBarList.children) {
             //input数值改变
-            oneInfoBar.removeEventListener('change',drawbmp_oneInfoBar_listener_callback());   
+            oneInfoBar.removeEventListener('change',drawbmp_oneInfoBar_listener_callback);   
         }
     };
 
