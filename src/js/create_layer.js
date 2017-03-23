@@ -95,25 +95,32 @@
     function change_layer_select_option(){
         console.log('select change');
         var layerInfoBarList = document.getElementById('layerInfoBarList');
+        var selects = layerInfoBarList.getElementsByTagName("select");
 
-        for(var layerInfoBar of layerInfoBarList.children){
-            for(var cld of layerInfoBar.children){
-                if(cld.localName === 'select'){
-                    var len = cld.options.length;
-                    for(var i = 0;i<len;i++){
-                        cld.removeChild(cld.options[0]);
-                    }
+        for(var cld of selects){
+            
+            var selectedIdx = cld.selectedIndex;
 
-
-                    //填充select选项内容
-                    for(var name of imgBoxNameArray){
-                        var newOption = new Option(name);
-                        newOption.setAttribute("value", name);
-                        cld.options.add(newOption);
-                    }
-                }
+            for(var i = cld.options.length-1;i>=0;i--){
+                cld.removeChild(cld.options[i]);
             }
+
+            //填充select选项内容
+            for(var name of imgBoxNameArray){
+                var newOption = new Option(name);
+                newOption.setAttribute("value", name);
+                cld.options.add(newOption);
+            }
+
+            if(selectedIdx <= cld.options.length-1){
+                cld.selectedIndex = selectedIdx;
+            }
+            else{
+                cld.selectedIndex = 0;
+            }
+            
         }
+
     }
 
     //初始化-订阅事件

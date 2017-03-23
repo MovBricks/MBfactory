@@ -142,25 +142,32 @@
         var painter_ctx = painter_canvas.getContext("2d");
         painter_ctx.clearRect(0, 0, painter_canvas.width, painter_canvas.height);       
 
-        layers.sort(layersSorting);
+        // 查找被单击的图层
+        var layersCopy = layers.slice();
+        layersCopy.sort(layersSorting);        
 
         for (var i = 0; i<layerInfoBarList.children.length;i++) {
 
             var oneInfoBar = layerInfoBarList.children[i];
 
-            var nameIdx = parseInt(oneInfoBar.children[0].innerHTML.replace(/\D/g,""))-1;
-            var idx = find_old_layer_idx(nameIdx);
+            // var nameIdx = parseInt(oneInfoBar.children[0].innerHTML.replace(/\D/g,""))-1;
+            // var idx = find_old_layer_idx(nameIdx);
             
-            var x = layers[idx].x;
-            var y = layers[idx].y;
-            var w = layers[idx].w;
-            var h = layers[idx].h;
+            // var x = layersCopy[idx].x;
+            // var y = layersCopy[idx].y;
+            // var w = layersCopy[idx].w;
+            // var h = layersCopy[idx].h;
             
+            var x = layersCopy[i].x;
+            var y = layersCopy[i].y;
+            var w = layersCopy[i].w;
+            var h = layersCopy[i].h;
+
             //绘制图片
             
             var previewContainer = document.getElementsByClassName('previewContainer');
             var box_idx = oneInfoBar.children[1].selectedIndex;
-            var imgData = previewContainer[box_idx].children[layers[idx].img_idx];
+            var imgData = previewContainer[box_idx].children[layersCopy[i].img_idx];
             if(imgData !== undefined){
                 var image = new Image();
                 image.src = imgData.currentSrc;
@@ -185,7 +192,7 @@
             painter_ctx.font = '12px Arial';
             painter_ctx.fillStyle = '#620000';
 
-            painter_ctx.fillText(nameIdx+1, x, y + painter_ctx.lineWidth);
+            painter_ctx.fillText(layersCopy[i].layer_idx+1, x, y + painter_ctx.lineWidth);
 
             
         }
@@ -214,16 +221,20 @@
       var clickY = e.pageY - painter_canvas.offsetTop;
  
       // 查找被单击的图层
-      layers.sort(layersSorting);
+      var layersCopy = layers.slice();
+      layersCopy.sort(layersSorting);
       //倒序查找最高层图层
-      for(var i=layers.length-1; i>=0; i--) {
-        var layer = layers[i];
+      for(var i=layersCopy.length-1; i>=0; i--) {      
         
         // 判断这个点是否在图层中
-        if (isInner(clickX,clickY,layer)) {
-          layer.z = layers[layers.length-1].z+1;           
-          selectedLayer = layer;   
-         
+        if (isInner(clickX,clickY,layersCopy[i])) {
+
+            var old_layer_idx = find_old_layer_idx(layersCopy[i].layer_idx);
+
+            //对象引用
+            selectedLayer = layers[old_layer_idx];
+            selectedLayer.z = layersCopy[layersCopy.length-1].z+1;
+
           // 使图层允许拖拽
           isDragging = true; 
            

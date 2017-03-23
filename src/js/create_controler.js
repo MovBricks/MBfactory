@@ -56,6 +56,8 @@ function change_controler_select_option(){
     var selectLayer = controlerInfoBarList.getElementsByClassName("selectLayer");
     
     for(var select of selectLayer){
+        
+        var selectedIdx = select.selectedIndex;
         select.innerHTML = "";
 
         //填充select选项内容
@@ -63,6 +65,13 @@ function change_controler_select_option(){
             var newOption = new Option("图层"+(name.layer_idx+1));
             newOption.setAttribute("value", newOption.innerHTML);
             select.options.add(newOption);
+        }
+
+        if(selectedIdx <= select.options.length-1){
+            select.selectedIndex = selectedIdx;
+        }
+        else{
+            select.selectedIndex = 0;
         }
     }
 }   
