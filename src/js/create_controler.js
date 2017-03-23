@@ -1,9 +1,11 @@
 'use strict'
 
+var controlerInfoBarList = document.getElementById('controlerInfoBarList');
+
 //点击增加控制器
 function click_add_controler_handler(Obj){
     console.log('click_add_controler_handler');
-    var controlerInfoBarList = document.getElementById('controlerInfoBarList');
+    //var controlerInfoBarList = document.getElementById('controlerInfoBarList');
 
     //添加节点  
     
@@ -52,7 +54,7 @@ function click_add_controler_handler(Obj){
 
 function change_controler_select_option(){
     
-    var controlerInfoBarList = document.getElementById("controlerInfoBarList");
+    //var controlerInfoBarList = document.getElementById("controlerInfoBarList");
     var selectLayer = controlerInfoBarList.getElementsByClassName("selectLayer");
     
     for(var select of selectLayer){
@@ -76,27 +78,31 @@ function change_controler_select_option(){
     }
 }   
 
-// //初始化-订阅事件
+function refresh_controler_param_select(){
+    var selectControlers = controlerInfoBarList.getElementsByClassName("selectControler");
+}
 
-// function create_controler_listener_callback(){
-//     console.log('layerInfoBarList DOMSubtreeModified!!!!!');
-//     change_controler_select_option();
-// }
+//初始化-订阅事件
+
+function create_controler_listener_callback(){
+    console.log('layerInfoBarList change!!!!!');
+    //change_controler_select_option();
+}
 
 
-//     var init = function (){
-        
-//         var layerInfoBarList = document.getElementById('layerInfoBarList');
-//         layerInfoBarList.addEventListener('DOMSubtreeModified',create_controler_listener_callback);       
-//     };
+var init = function (){
+    
+    //var controlerInfoBarList = document.getElementById('controlerInfoBarList');
+    controlerInfoBarList.addEventListener('change',create_controler_listener_callback);       
+};
 
-//     var exit = function (){
-        
-//         var layerInfoBarList = document.getElementById('layerInfoBarList');
-//         layerInfoBarList.removeEventListener('DOMSubtreeModified',create_controler_listener_callback);       
-//     };
+var exit = function (){
+    
+    //var controlerInfoBarList = document.getElementById('controlerInfoBarList');
+    controlerInfoBarList.removeEventListener('change',create_controler_listener_callback);       
+};
 
-//     (function () {
-//         startList.push(init);
-//         exitList.push(exit);
-//     })();
+(function () {
+    startList.push(init);
+    exitList.push(exit);
+})();
