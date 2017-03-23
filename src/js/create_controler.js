@@ -61,7 +61,7 @@ function change_controler_select_option(){
         //填充select选项内容
         for(var name of layers){
             var newOption = new Option("图层"+(name.layer_idx+1));
-            newOption.setAttribute("value", name.layer_idx);
+            newOption.setAttribute("value", newOption.innerHTML);
             select.options.add(newOption);
         }
     }

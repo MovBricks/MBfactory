@@ -84,10 +84,10 @@
             </div>
         </div>
         <div class="addLayer rightMiddle">
-            <form action="" id="layerInfoForm">
+            <form action="" id="layerInfoForm" method="POST">
                 <ul id="layerInfoBarList">
                     <li class="layerInfoBar">
-                        <p onclick="click_top_layer(this)">图层1</p><select><option value="1">仓库1</option></select>
+                        <p onclick="click_top_layer(this)">图层1</p><select><option value="仓库1">仓库1</option></select>
                         <div>x:<input type="number" name="x" value="10" /></div>
                         <div>y:<input type="number" name="y" value="10" /></div>
                         <div>width:<input type="number" name="w" value="10" /></div>
@@ -106,7 +106,7 @@
                 <li class="controlerInfoBar">
                     <p>被控图层</p>
                     <select class="selectLayer">
-                        <option value="1">图层1</option>
+                        <option value="图层1">图层1</option>
                     </select>
                     <p>控件</p>
                     <select>

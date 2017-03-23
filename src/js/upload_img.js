@@ -127,9 +127,9 @@
         var imgBoxNewItem = document.createElement("li"); //创建节点
         imgBoxNewItem.setAttribute("class", "imgBox hide"); //设置class属性
 
-        var nameLength = boxNameBarList.children.length-2;
+        //var nameLength = boxNameBarList.children.length-2;
 
-        imgBoxNewItem.innerHTML = '<div class="previewContainer" name="'+nameLength+'"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()">导入图片</button></div></div>'; //设置节点内容
+        imgBoxNewItem.innerHTML = '<div class="previewContainer" name="'+(nameIdx-1)+'"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()">导入图片</button></div></div>'; //设置节点内容
 
         imgAllBoxs.appendChild(imgBoxNewItem); //添加仓库内容节点        
     }
