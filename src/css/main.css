@@ -417,7 +417,7 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
   max-height: 230px;
   overflow:auto;
 }
-#controlerInfoBarList,
+.OS_res,
 .addLayer{
   margin: 10px 0 0 0;
   
@@ -480,6 +480,6 @@ li.nav-btn > a:hover, li.nav-btn > a:focus {
 
 }
 .controlerInfoBar select{
-  width: 65px;
+  width: 70px;
 }
 

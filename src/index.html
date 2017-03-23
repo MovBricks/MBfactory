@@ -109,27 +109,26 @@
                         <option value="图层1">图层1</option>
                     </select>
                     <p>控件</p>
-                    <select>
+                    <select class="selectControler">
+                        <option value="time">时间</option>
                         <option value="step">步数</option>
                         <option value="temp">温度</option>
-                        <option value="dist">距离</option>                        
-                        <option value="time">时间</option>
+                        <option value="dist">距离</option> 
+                        <option value="calo">卡路里</option> 
                     </select>
                     <p>控件参数</p>
-                    <select class="controlerParam">
-                        <option value="1">个位</option>
-                        <option value="2">十位</option>
-                        <option value="3">百位</option>
-                        <option value="4">千位</option>
-                        <option value="5">万位</option>
-                        <option value="6">十万位</option>
+                    <select class="controlerParam" name="time">
+                        <option value="1">时(十位)</option>
+                        <option value="2">时(个位)</option>
+                        <option value="3">分(十位)</option>
+                        <option value="4">分(个位)</option>
                     </select>
                     <button onclick="click_remove_layer_handler(this)">删除控件</button>
                 </li>
-            </ul>
-            <div class="createControler">
+            </ul>            
+        </div>
+        <div class="createControler">
                 <button onclick="click_add_controler_handler(this)">增加控件</button>
-            </div>
         </div>
               
     </div>

@@ -29,20 +29,19 @@ function click_add_controler_handler(Obj){
     //添加节点后续内容
     controlerInfoBarNewItem.innerHTML = controlerInfoBarNewItem.innerHTML+`                    
         <p>控件</p>
-        <select>
+        <select class="selectControler">
+            <option value="time">时间</option>
             <option value="step">步数</option>
             <option value="temp">温度</option>
-            <option value="dist">距离</option>                        
-            <option value="time">时间</option>
+            <option value="dist">距离</option> 
+            <option value="calo">卡路里</option> 
         </select>
         <p>控件参数</p>
-        <select class="controlerParam">
-            <option value="1">个位</option>
-            <option value="2">十位</option>
-            <option value="3">百位</option>
-            <option value="4">千位</option>
-            <option value="5">万位</option>
-            <option value="6">十万位</option>
+        <select class="controlerParam" name="time">
+            <option value="1">时(十位)</option>
+            <option value="2">时(个位)</option>
+            <option value="3">分(十位)</option>
+            <option value="4">分(个位)</option>
         </select>
         <button onclick="click_remove_layer_handler(this)">删除控件</button>
         `; //设置文字内容
@@ -80,13 +79,42 @@ function change_controler_select_option(){
 
 function refresh_controler_param_select(){
     var selectControlers = controlerInfoBarList.getElementsByClassName("selectControler");
+    var controlerParam = controlerInfoBarList.getElementsByClassName("controlerParam");
+    
+    for(var i = selectControlers.length-1;i>=0;i--){
+        
+        if(selectControlers[i].value === "time"){
+            if(controlerParam[i].name !== "time"){                
+                controlerParam[i].innerHTML=`
+                        <option value="1">时(十位)</option>
+                        <option value="2">时(个位)</option>
+                        <option value="3">分(十位)</option>
+                        <option value="4">分(个位)</option>
+                        `;
+                controlerParam[i].name = "time";       
+            }
+        }
+        else{
+            if(controlerParam[i].name === "time"){
+                controlerParam[i].innerHTML=`
+                        <option value="1">个位</option>
+                        <option value="2">十位</option>
+                        <option value="3">百位</option>
+                        <option value="4">千位</option>
+                        <option value="5">万位</option>
+                        `;
+                controlerParam[i].name = "sports"; 
+            }
+        }
+
+    }    
 }
 
 //初始化-订阅事件
 
 function create_controler_listener_callback(){
     console.log('layerInfoBarList change!!!!!');
-    //change_controler_select_option();
+    refresh_controler_param_select();
 }
 
 
