@@ -156,6 +156,14 @@ a{
    自定义页面样式
    =============== */
 
+.browserupgrade {
+    margin: 0;
+    padding: 1rem;
+    background: #ccc;
+    font-family: "YouYuan","Microsoft YaHei",微软雅黑,"MicrosoftJhengHei";
+    font-size:2rem;
+}
+
 #nav-contain nav {
   background-color: #222;
   height: 75px;
