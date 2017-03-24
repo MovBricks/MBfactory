@@ -15,8 +15,9 @@
         clickObj.parentNode.setAttribute("class", "boxNameStringSelect");
 
         var imgAllBoxs = document.getElementById('imgBoxList');
-
-        for (var imgBox of imgAllBoxs.children) {
+        
+        for(var loop = 0;loop<imgAllBoxs.children.length;loop++){
+            var imgBox = imgAllBoxs.children[loop];     
             imgBox.setAttribute("class", "imgBox hide");
         }
 
@@ -149,9 +150,8 @@
             return;
         }
 
-
-        for (var file of fileInput.files) {
-
+        for(var loop = 0;loop<fileInput.files.length;loop++){
+            var file = fileInput.files[loop]; 
             
             if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/bmp') {
                 alert('不是有效的图片文件!');

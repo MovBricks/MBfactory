@@ -63,8 +63,10 @@
         var layerInfoBarNewItemSelect = document.createElement("select");  
         var select = layerInfoBarNewItem.appendChild(layerInfoBarNewItemSelect); 
 
-        //填充select选项内容
-        for(var name of imgBoxNameArray){
+        //填充select选项内容        
+        for(var loop = 0;loop<imgBoxNameArray.length;loop++){
+            var name = imgBoxNameArray[loop]; 
+
             var newOption = new Option(name);
             newOption.setAttribute("value", name);
             select.options.add(newOption);
@@ -97,7 +99,8 @@
         var layerInfoBarList = document.getElementById('layerInfoBarList');
         var selects = layerInfoBarList.getElementsByTagName("select");
 
-        for(var cld of selects){
+        for(var loop = 0;loop<selects.length;loop++){
+            var cld = selects[loop]; 
             
             var selectedIdx = cld.selectedIndex;
 
@@ -105,8 +108,10 @@
                 cld.removeChild(cld.options[i]);
             }
 
-            //填充select选项内容
-            for(var name of imgBoxNameArray){
+            //填充select选项内容            
+            for(var loop2 = 0;loop2<imgBoxNameArray.length;loop2++){
+                var name = imgBoxNameArray[loop2]; 
+
                 var newOption = new Option(name);
                 newOption.setAttribute("value", name);
                 cld.options.add(newOption);

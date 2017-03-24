@@ -285,8 +285,9 @@
  }
 
     function reListenAllInput() {
-       
-        for (var oneInfoBar of layerInfoBarList.children) {
+               
+        for(var loop = 0;loop<layerInfoBarList.children.length;loop++){
+            var oneInfoBar = layerInfoBarList.children[loop]; 
             //input数值改变
             oneInfoBar.addEventListener('change',drawbmp_oneInfoBar_listener_callback);   
         }
@@ -327,8 +328,9 @@
     var exit = function (){        
         
         layerInfoBarList.parentElement.lastElementChild.removeEventListener('click',drawbmp_listener_callback);   
-
-        for (var oneInfoBar of layerInfoBarList.children) {
+      
+        for(var loop = 0;loop<layerInfoBarList.children.length;loop++){
+            var oneInfoBar = layerInfoBarList.children[loop]; 
             //input数值改变
             oneInfoBar.removeEventListener('change',drawbmp_oneInfoBar_listener_callback);   
         }

@@ -17,14 +17,16 @@
     //初始化函数订阅移除事件数组
     var startList = [];
     var exitList = [];
-    window.onload = function () {
-        for (var func of startList) {
+    window.onload = function () {      
+        for(var loop = 0;loop<startList.length;loop++){
+            var func = startList[loop]; 
             func();
         }
     }
 
     window.onunload = function () {
-        for (var func of exitList) {
+        for(var loop = 0;loop<exitList.length;loop++){
+            var func = exitList[loop]; 
             func();
         }
     }

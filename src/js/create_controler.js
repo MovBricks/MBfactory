@@ -20,7 +20,8 @@ function click_add_controler_handler(Obj){
     var select = controlerInfoBarNewItem.appendChild(controlerInfoBarNewItemSelect); 
 
     //填充select选项内容
-    for(var name of layers){
+    for(var loop = 0;loop<layers.length;loop++){
+        var name = layers[loop];    
         var newOption = new Option("图层"+(name.layer_idx+1));
         newOption.setAttribute("value", name.layer_idx);
         select.options.add(newOption);
@@ -55,14 +56,15 @@ function change_controler_select_option(){
     
     //var controlerInfoBarList = document.getElementById("controlerInfoBarList");
     var selectLayer = controlerInfoBarList.getElementsByClassName("selectLayer");
-    
-    for(var select of selectLayer){
         
+    for(var loop = 0;loop<selectLayer.length;loop++){
+        var select = selectLayer[loop];    
         var selectedIdx = select.selectedIndex;
         select.innerHTML = "";
 
-        //填充select选项内容
-        for(var name of layers){
+        //填充select选项内容       
+        for(var loop2 = 0;loop2<layers.length;loop2++){
+        var name = layers[loop2]; 
             var newOption = new Option("图层"+(name.layer_idx+1));
             newOption.setAttribute("value", newOption.innerHTML);
             select.options.add(newOption);
