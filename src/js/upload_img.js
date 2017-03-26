@@ -72,13 +72,27 @@
         var ObjName = parseInt(Obj.getAttribute("name"));
         
         //删除图片数组对应数据   
+        var flag = 0;
+        var delet_img_idx;
         for(var i = imgDataObjArray.length-1; i>=0;i--){
-            if((imgDataObjArray[i].box === parObjName)&&(imgDataObjArray[i].idx === ObjName)){
+           if((imgDataObjArray[i].box === parObjName)&&(imgDataObjArray[i].idx === ObjName)){
+                delet_img_idx = imgDataObjArray[i].idx;
+                flag = 1;
                 imgDataObjArray.splice(i,1);
-                break;
+                
+           }    
+        }
+
+        if(flag === 1){
+            //修改img_idx
+            for(var i = imgDataObjArray.length-1; i>=0;i--){
+                if((imgDataObjArray[i].box === parObjName)&&(imgDataObjArray[i].idx > delet_img_idx)){
+                        imgDataObjArray[i].idx = imgDataObjArray[i].idx-1;
+                }    
             }
         }
 
+        flag = 0;
         //删除节点           
         parObj.removeChild(Obj);
        
@@ -157,6 +171,7 @@
                 alert('不是有效的图片文件!');
                 return;
             }           
+            var previewContainer = document.getElementsByClassName('previewContainer')[imgBoxIndex];
 
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -169,19 +184,17 @@
                                
                 imgInput.src = data;
 
-                var previewContainer = document.getElementsByClassName('previewContainer')[imgBoxIndex];
+                
                 previewContainer.appendChild(imgInput); //插入到previewContainer内  
                 
                 imgInput.setAttribute("name", previewContainer.children.length-1); //设置name属性,标记图片序号,便于删除时查找
-
-
-                //保存进数组
-                var imgObj = new imgDataObj(imgBoxIndex,previewContainer.children.length-1,file);
-                imgDataObjArray.push(imgObj);
                 
                 drawPains();                 
             };
-            
+            //保存进数组
+            var imgObj = new imgDataObj(imgBoxIndex,previewContainer.children.length+loop,file);
+            imgDataObjArray.push(imgObj);
+
             reader.readAsDataURL(file);
         }
     }

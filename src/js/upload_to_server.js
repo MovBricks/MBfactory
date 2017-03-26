@@ -9,17 +9,31 @@ function fail(code) {
     alert('请求失败:' + code);
 }
 
-var url = "http://192.168.0.107:8080";
-//上传数据对象
-var fileDate = new FormData();
+var url = "http://192.168.0.107:3000";
 
-function get_imgdata_to_filedata(){
+
+function get_imgdata_to_filedata(fileDate){
 
     for(var i = imgDataObjArray.length-1;i>=0;i--){
         var fileName = "box"+imgDataObjArray[i].box+"idx"+imgDataObjArray[i].idx;
         fileDate.append(fileName,imgDataObjArray[i].file);
     }
 }
+
+function get_controler_info(controlerInfo){
+
+    var controlerInfoBarList = document.getElementById('controlerInfoBarList');
+    for(var i = controlerInfoBarList.children.length-1;i>=0;i--){
+        var selects = controlerInfoBarList.children[i].getElementsByTagName('select');
+        var Obj = new Object;
+        Obj.selectLayer = selects[0].selectedIndex;
+        Obj.selectControler = selects[1].selectedIndex;
+        Obj.controlerParam = selects[2].selectedIndex;
+        controlerInfo.push(Obj);
+    }  
+   
+}
+
 
 function upload_web_data_to_server() {
 
@@ -47,20 +61,32 @@ function upload_web_data_to_server() {
 
     // 发送请求:
     request.open('POST', url);
-    
 
-    // 获取页面已有的一个form表单
-    var layerInfoForm = document.getElementById('layerInfoForm');
-    // 用表单来初始化FormData
-    var formData = new FormData(layerInfoForm);
-    //发送
-    request.send(formData);
     
+    var formData = new FormData();
+
+    //控制器数据
+    var controlerInfo = new Array();
+    get_controler_info(controlerInfo);
+
+    var controlerInfoJson = JSON.stringify(controlerInfo);   
+    formData.append("controlerInfo",controlerInfoJson);
+
+    //图层数据
+    var layersInfoJson =  JSON.stringify(layers);    
+    formData.append("layersInfo",layersInfoJson);
     
+    // //发送
+    // request.send(formData);
+
+
+    //图片数据   
     //从图片数据数组中获取数据填充FormData
-    get_imgdata_to_filedata();
+    //上传数据对象
+    // var fileDate = new FormData();
+    get_imgdata_to_filedata(formData);
     //发送图片文件
-    request.send(fileDate);
+    request.send(formData);
 
 
     alert('请求已发送，请等待响应...');

@@ -6,9 +6,10 @@
       this.y = y;
       this.w = w;
       this.h = h;
-      this.img_idx = 0;
       this.z = 0;
+      this.img_idx = 0;      
       this.layer_idx = layer_idx;
+      this.box_idx = 0;
     }
 
     //数组排序的方法
@@ -100,7 +101,11 @@
             if(layers[old_layer_idx] !== undefined){
                 oneLayer.img_idx = layers[old_layer_idx].img_idx;
                 oneLayer.z = layers[old_layer_idx].z;
+                //oneLayer.box_idx = layers[old_layer_idx].box_idx;
             }
+            
+             oneLayer.box_idx = oneInfoBar.children[1].selectedIndex;
+            
             
 
 
@@ -166,7 +171,7 @@
             //绘制图片
             
             var previewContainer = document.getElementsByClassName('previewContainer');
-            var box_idx = oneInfoBar.children[1].selectedIndex;
+            var box_idx = layersCopy[i].box_idx;//oneInfoBar.children[1].selectedIndex;
             var imgData = previewContainer[box_idx].children[layersCopy[i].img_idx];
             if(imgData !== undefined){
                 var image = new Image();

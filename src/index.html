@@ -84,20 +84,18 @@
                 </ul>
             </div>
         </div>
-        <div class="addLayer rightMiddle">
-            <form action="" id="layerInfoForm" method="POST">
-                <ul id="layerInfoBarList">
-                    <li class="layerInfoBar">
-                        <p onclick="click_top_layer(this)">图层1</p><select><option value="仓库1">仓库1</option></select>
-                        <div>x:<input type="number" name="x" value="10" /></div>
-                        <div>y:<input type="number" name="y" value="10" /></div>
-                        <div>width:<input type="number" name="w" value="10" /></div>
-                        <div>heigh:<input type="number" name="h" value="10"></div>
-                        <div>img_idx:<input type="number" name="img_idx" value="0"></div>
-                        <button onclick="click_remove_layer_handler(this)">删除图层</button>
-                    </li>               
-                </ul> 
-            </form>         
+        <div class="addLayer rightMiddle">            
+            <ul id="layerInfoBarList">
+                <li class="layerInfoBar">
+                    <p onclick="click_top_layer(this)">图层1</p><select><option value="仓库1">仓库1</option></select>
+                    <div>x:<input type="number" name="x" value="10" /></div>
+                    <div>y:<input type="number" name="y" value="10" /></div>
+                    <div>width:<input type="number" name="w" value="10" /></div>
+                    <div>heigh:<input type="number" name="h" value="10"></div>
+                    <div>img_idx:<input type="number" name="img_idx" value="0"></div>
+                    <button onclick="click_remove_layer_handler(this)">删除图层</button>
+                </li>               
+            </ul>                  
         </div>
         <div class="createLayer">
             <button onclick="click_create_layer_handler()">增加图层</button>
