@@ -18,7 +18,7 @@
 <div id="nav-contain">
     <nav>
         <div id="inner-nav-contain">
-            <a href="http://www.damaijiankang.com/index.html" target="_blank" id="back-index">
+            <a href="#" target="_blank" id="back-index">
                 <img src="http://www.damaijiankang.com/images/maibu/nav-logo.png" id="nav-logo" alt="麦步科技有限公司" title="麦步科技有限公司">
             </a>             
             <h1 id="maibuFactory">MaibuFactory</h1>
@@ -67,7 +67,7 @@
                 <div class="boxNameBar" id="imgBoxAndboxNameBoxNameBar">
                     <ul id="boxNameBarList">
                         <li class="boxNameStringSelect">
-                            <div class="boxNameString" onclick="click_switch_img_box_handler(this)">仓库1</div>
+                            <div class="boxNameString" onclick="click_switch_img_box_handler(this)">图片仓库1</div>
                             <!--<button onclick="remove_img_box_handler(this)"></button>-->
                         </li>
                         <button class="addImgBoxBtn" onclick="add_img_box_handler()"></button>
@@ -78,7 +78,7 @@
                         <div class="previewContainer" name="0"></div>
                         <div class="up_img_btn_box">
                             <input type="file" id="upload_img_btn" multiple="multiple" />
-                            <button onclick="up_img_btn_face()">导入图片</button>
+                            <button onclick="up_img_btn_face()">导入本地图片</button>
                         </div>
                     </li>
                 </ul>
@@ -87,7 +87,7 @@
         <div class="addLayer rightMiddle">            
             <ul id="layerInfoBarList">
                 <li class="layerInfoBar">
-                    <p onclick="click_top_layer(this)">图层1</p><select><option value="仓库1">仓库1</option></select>
+                    <p onclick="click_top_layer(this)">图层1</p><select><option value="图片仓库1">图片仓库1</option></select>
                     <div>x:<input type="number" name="x" value="10" /></div>
                     <div>y:<input type="number" name="y" value="10" /></div>
                     <div>width:<input type="number" name="w" value="10" /></div>
@@ -111,7 +111,6 @@
                     <select class="selectControler">
                         <option value="time">时间</option>
                         <option value="step">步数</option>
-                        <option value="temp">温度</option>
                         <option value="dist">距离</option> 
                         <option value="calo">卡路里</option> 
                     </select>
