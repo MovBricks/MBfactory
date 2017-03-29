@@ -28,24 +28,9 @@ function click_add_controler_handler(Obj){
     }
 
     //添加节点后续内容
-    controlerInfoBarNewItem.innerHTML = controlerInfoBarNewItem.innerHTML+`                    
-        <p>控件</p>
-        <select class="selectControler">
-            <option value="time">时间</option>
-            <option value="step">步数</option>
-            <option value="temp">温度</option>
-            <option value="dist">距离</option> 
-            <option value="calo">卡路里</option> 
-        </select>
-        <p>控件参数</p>
-        <select class="controlerParam" name="time">
-            <option value="1">时(十位)</option>
-            <option value="2">时(个位)</option>
-            <option value="3">分(十位)</option>
-            <option value="4">分(个位)</option>
-        </select>
-        <button onclick="click_remove_layer_handler(this)">删除控件</button>
-        `; //设置文字内容
+    
+    //设置文字内容
+    controlerInfoBarNewItem.innerHTML = controlerInfoBarNewItem.innerHTML + "\n<p>控件</p>\n<select class=\"selectControler\">\n            <option value=\"time\">时间</option>\n<option value=\"step\">步数</option>\n<option value=\"temp\">温度</option>\n            <option value=\"dist\">距离</option> \n<option value=\"calo\">卡路里</option> \n</select>\n<p>控件参数</p>\n<select class=\"controlerParam\" name=\"time\">\n<option value=\"1\">时(十位)</option>\n<option value=\"2\">时(个位)</option>\n<option value=\"3\">分(十位)</option>\n<option value=\"4\">分(个位)</option>\n</select>\n<button onclick=\"click_remove_layer_handler(this)\">删除控件</button>\n"; 
             
 
     controlerInfoBarList.appendChild(controlerInfoBarNewItem); 
@@ -87,24 +72,14 @@ function refresh_controler_param_select(){
         
         if(selectControlers[i].value === "time"){
             if(controlerParam[i].name !== "time"){                
-                controlerParam[i].innerHTML=`
-                        <option value="1">时(十位)</option>
-                        <option value="2">时(个位)</option>
-                        <option value="3">分(十位)</option>
-                        <option value="4">分(个位)</option>
-                        `;
+                controlerParam[i].innerHTML = "\n<option value=\"1\">时(十位)</option>\n<option value=\"2\">时(个位)</option>\n<option value=\"3\">分(十位)</option>\n<option value=\"4\">分(个位)</option>\n";
                 controlerParam[i].name = "time";       
             }
         }
         else{
             if(controlerParam[i].name === "time"){
-                controlerParam[i].innerHTML=`
-                        <option value="1">个位</option>
-                        <option value="2">十位</option>
-                        <option value="3">百位</option>
-                        <option value="4">千位</option>
-                        <option value="5">万位</option>
-                        `;
+
+                controlerParam[i].innerHTML = "\n<option value=\"1\">个位</option>\n<option value=\"2\">十位</option>\n<option value=\"3\">百位</option>\n<option value=\"4\">千位</option>\n<option value=\"5\">万位</option>\n";
                 controlerParam[i].name = "sports"; 
             }
         }
