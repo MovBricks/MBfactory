@@ -41,7 +41,11 @@
 
         var parObj = Obj.parentNode;
         var parparObj = parObj.parentNode;
-
+        
+        if(parparObj.children.length <= 2){
+            return;
+        }
+        
         //删除仓库名数组中对应的名字
         var child_idx = imgBoxNameArray.indexOf(parObj.children[0].innerHTML);
         imgBoxNameArray.splice(child_idx,1);
@@ -144,7 +148,7 @@
 
         //var nameLength = boxNameBarList.children.length-2;
 
-        imgBoxNewItem.innerHTML = '<div class="previewContainer" name="'+(nameIdx-1)+'"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()">导入图片</button></div></div>'; //设置节点内容
+        imgBoxNewItem.innerHTML = '<div class="previewContainer" name="'+(nameIdx-1)+'"></div><div class="up_img_btn_box"><button onclick="up_img_btn_face()">导入本地图片</button></div></div>'; //设置节点内容
 
         imgAllBoxs.appendChild(imgBoxNewItem); //添加仓库内容节点        
     }
