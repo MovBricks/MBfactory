@@ -24,13 +24,9 @@
     //删除图层
     function click_remove_layer_handler(Obj){
         console.log('click_remove_layer_handler');
-                
-        var parObj = Obj.parentNode.parentNode;
-        if(parObj.children.length <= 1){
-            return;
-        }
-
+        
         //删除节点
+        var parObj = Obj.parentNode.parentNode;
         parObj.removeChild(Obj.parentNode);
 
         //刷新layers数组
@@ -77,8 +73,13 @@
         }
 
         //添加节点的xywh
-        //设置文字内容
-        layerInfoBarNewItem.innerHTML = layerInfoBarNewItem.innerHTML + "\n<div>x:<input type=\"number\" name=\"x\" value=\"10\" /></div>\n<div>y:<input type=\"number\" name=\"y\" value=\"10\" /></div>\n<div>width:<input type=\"number\" name=\"w\" value=\"10\" /></div>\n<div>heigh:<input type=\"number\" name=\"h\" value=\"10\"></div>\n<div>img_idx:<input type=\"number\" name=\"img_idx\" value=\"0\"></div>\n<button onclick=\"click_remove_layer_handler(this)\">删除图层</button>";
+        layerInfoBarNewItem.innerHTML = layerInfoBarNewItem.innerHTML+`                    
+                    <div>x:<input type="number" name="x" value="10" /></div>
+                    <div>y:<input type="number" name="y" value="10" /></div>
+                    <div>width:<input type="number" name="w" value="10" /></div>
+                    <div>heigh:<input type="number" name="h" value="10"></div>
+                    <div>img_idx:<input type="number" name="img_idx" value="0"></div>
+                    <button onclick="click_remove_layer_handler(this)">删除图层</button>`; //设置文字内容
                
     
         layerInfoBarList.appendChild(layerInfoBarNewItem); 
